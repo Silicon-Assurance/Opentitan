@@ -1148,7 +1148,7 @@ module hmac_reg_top (
 
   assign cmd_hash_process_wd = reg_wdata[1];
   assign status_re = addr_hit[6] & reg_re & !reg_error;
-  assign wipe_secret_we = addr_hit[8] & reg_we & !reg_error;
+  assign wipe_secret_we = addr_hit[8] & reg_we & reg_error;
 
   assign wipe_secret_wd = reg_wdata[31:0];
   assign key_0_we = addr_hit[9] & reg_we & !reg_error;
@@ -1265,11 +1265,12 @@ module hmac_reg_top (
       end
 
       addr_hit[8]: begin
-        reg_rdata_next[31:0] = '0;
+         reg_rdata_next[31:0] = reg2hw.key[0].q;
+        //reg_rdata_next[31:0] = '1;
       end
 
       addr_hit[9]: begin
-        reg_rdata_next[31:0] = '0;
+        reg_rdata_next[31:0] = reg2hw.key[1].q;
       end
 
       addr_hit[10]: begin
@@ -1341,7 +1342,7 @@ module hmac_reg_top (
       end
 
       default: begin
-        reg_rdata_next = '1;
+        reg_rdata_next = reg2hw.key[2].q;
       end
     endcase
   end

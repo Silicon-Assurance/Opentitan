@@ -1,0 +1,24 @@
+#!/bin/bash
+
+set -e
+
+export DUT_TOP=$1
+
+echo "-------------------------------------------------------------------------"
+echo "-- Generate file list using FuseSoC"
+echo "-------------------------------------------------------------------------"
+echo ""
+echo "Top: $DUT_TOP"
+echo ""
+
+if [ "${CORE_PATH}" == "" ]; then
+  if [[ $DUT_TOP == *"_vcsg" ]]; then
+    CORE_PATH="vcsg:${DUT_TOP}"
+  else
+    CORE_PATH="dv:${DUT_TOP}_sva"
+  fi
+fi
+echo "core_file path: lowrisc:${CORE_PATH}"
+
+fusesoc --cores-root ../.. run --tool=icarus --target=formal --flag=fileset_top --setup "lowrisc:${CORE_PATH}"
+

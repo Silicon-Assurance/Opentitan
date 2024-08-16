@@ -1,0 +1,18 @@
+#!/bin/bash
+
+set -e
+
+export DUT_TOP=$1
+export TB_TOP=$2
+
+echo "-------------------------------------------------------------------------"
+
+cd build/*${DUT_TOP}*/formal-icarus
+
+vc_static_shell -f ../../../vcsg_lint.tcl -output_log_file vcsg_lint.log
+#vc_static_shell -f ../../../vcsg_lint.tcl -output_log_file vcsg_lint.log -batch
+
+cd -
+
+echo "-------------------------------------------------------------------------"
+

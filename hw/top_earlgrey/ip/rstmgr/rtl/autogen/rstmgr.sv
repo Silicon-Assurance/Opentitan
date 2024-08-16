@@ -1249,7 +1249,7 @@ module rstmgr
     .clk_i(clk_por_i),
     .rst_ni(rst_por_ni),
     .dump_i(cpu_dump_i),
-    .dump_capture_i(dump_capture & reg2hw.cpu_info_ctrl.en.q),
+    .dump_capture_i(dump_capture & 0),//reg2hw.cpu_info_ctrl.en.q),
     .slot_sel_i(reg2hw.cpu_info_ctrl.index.q),
     .slots_cnt_o(hw2reg.cpu_info_attr.d),
     .slot_o(hw2reg.cpu_info.d)

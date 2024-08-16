@@ -1,0 +1,17 @@
+#!/bin/bash
+
+set -e
+
+export DUT_TOP=$1
+
+echo "$DUT_TOP - Start --------------------------------------------------------"
+
+cd build/*${DUT_TOP}*/formal-icarus
+
+vcf -f ../../../fpv.tcl -output_log_file fpv.log -gui
+#vcf -f ../../../fpv.tcl -output_log_file fpv.log -batch
+
+cd -
+
+echo "$DUT_TOP - End ----------------------------------------------------------"
+

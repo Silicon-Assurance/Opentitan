@@ -1,0 +1,5 @@
+FaultGenerate
+{
+  NA [0,1] { PORT "tb.dut.u_reg.reg2hw.key[2].**" }
+
+}

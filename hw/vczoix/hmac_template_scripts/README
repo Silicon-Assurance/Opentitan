@@ -1,0 +1,7 @@
+
+BEFORE you run VC ZOIX, please run respective IP smoke test using VCS simulator to create the  dependancies including the file list "*scr"  and from that directory you should be able to run VCZOIX
+
+
+example :  for Hmac
+=====================
+$REPO_TOP/opentitan/scratch/master/hmac-sim-vcs/default/sim-vcs/lowrisc_dv_hmac_sim_0.1.scr

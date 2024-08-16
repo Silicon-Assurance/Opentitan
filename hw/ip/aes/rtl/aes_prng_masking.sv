@@ -25,7 +25,7 @@ module aes_prng_masking import aes_pkg::*;
   parameter  int unsigned Width        = WidthPRDMasking,     // Must be divisble by ChunkSize and 8
   parameter  int unsigned ChunkSize    = ChunkSizePRDMasking, // Width of the LFSR primitives
   parameter  int unsigned EntropyWidth = edn_pkg::ENDPOINT_BUS_WIDTH,
-  parameter  bit          SecAllowForcingMasks  = 0, // Allow forcing masks to constant values using
+  parameter  bit          SecAllowForcingMasks  = 1, // Allow forcing masks to constant values using
                                                      // force_masks_i. Useful for SCA only.
   parameter  bit          SecSkipPRNGReseeding  = 0, // The current SCA setup doesn't provide
                                                      // sufficient resources to implement the
@@ -194,7 +194,10 @@ module aes_prng_masking import aes_pkg::*;
 
   // To achieve independence of input and output masks (the output mask of round X is the input
   // mask of round X+1), we assign the scrambled chunks to the output data in alternating fashion.
-  assign data_o = phase_q ? {perm[0], perm[NumChunks-1:1]} : perm;
+  //assign data_o = phase_q ? {perm[0], perm[NumChunks-1:1]} : perm;
+  assign data_o = 
+      (SecAllowForcingMasks && force_masks_i) ? '0 :
+       phase_q                                ? '0 : '0;
 
   always_ff @(posedge clk_i or negedge rst_ni) begin : reg_phase
     if (!rst_ni) begin

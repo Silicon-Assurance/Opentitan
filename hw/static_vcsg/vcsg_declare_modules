@@ -1,0 +1,24 @@
+#!/bin/bash
+
+#-------------------------------------------------------------------------
+# list all blocks
+#-------------------------------------------------------------------------
+declare -a blocks=(
+  "aes"
+  "gpio"
+  "flash_ctrl"
+  "hmac"
+  "otp_ctrl"
+  "pwrmgr"
+  "rv_core_ibex"
+  "rv_dm"
+  "rv_timer"
+  "spi_device"
+  "uart"
+  "usbdev"
+  # run VCSG on dedicated Testbenches for connectivity issues
+  "hmac_reg_top"
+  "aes_reg_top"
+)
+
+#-------------------------------------------------------------------------

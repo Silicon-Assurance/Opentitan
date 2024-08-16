@@ -1,0 +1,2846 @@
+
+  -----------------------------------------------------------------------------
+  Report Summary
+  -----------------------------------------------------------------------------
+  Product Info
+    Name    : VC Static Master Shell
+    Version : U-2023.03-1 -- Apr 17, 2023
+
+  Report Info
+    Created : Jun 22, 2023  14:02:15
+    Options
+      -include_waived
+
+    TopLevelModule: hmac
+
+  -----------------------------------------------------------------------------
+  Management Summary
+  -----------------------------------------------------------------------------
+  Stage             Family      Fatals    Errors  Warnings     Infos
+  -----             --------  --------  --------  --------  --------
+  LANGUAGE_CHECK    CODING           0         0       282         3
+  STRUCTURAL_CHECK  CODING           0         1         4         3
+  -----             --------  --------  --------  --------  --------
+  Total                              0         1       286         6
+
+
+  -----------------------------------------------------------------------------
+  Tree Summary
+  -----------------------------------------------------------------------------
+  Severity  Stage             Tag                  Count
+  --------  -----             -------------------  -----
+  error     STRUCTURAL_CHECK  InferLatch               1
+  warning   LANGUAGE_CHECK    W240                    21
+  warning   LANGUAGE_CHECK    W287b                  155 *
+  warning   LANGUAGE_CHECK    W415a                   70
+  warning   LANGUAGE_CHECK    W481a                    1
+  warning   LANGUAGE_CHECK    W486                     1
+  warning   LANGUAGE_CHECK    W528                    34
+  warning   STRUCTURAL_CHECK  FlopEConst               3
+  warning   STRUCTURAL_CHECK  STARC05-1.3.1.3          1
+  info      LANGUAGE_CHECK    ReportPortInfo-ML        1
+  info      LANGUAGE_CHECK    W240                     1
+  info      LANGUAGE_CHECK    W528                     1
+  info      STRUCTURAL_CHECK  RegInputOutput-ML        3
+  --------  -----             -------------------  -----
+  Total                                              293
+
+  * The following detailed reports have been limited to 100 per tag.
+
+
+  -----------------------------------------------------------------------------
+  InferLatch  (1 error/0 waived)
+  -----------------------------------------------------------------------------
+  Tag            : InferLatch
+  Description    : Latch inferred for signal '[Signal]' in module '[Module]'
+  Violation      : Lint:1
+  Goal           : lint_rtl
+  FileName       : ../src/lowrisc_fpv_hmac_csr_assert_0/hmac_csr_assert_fpv.sv
+  LineNumber     : 97
+  Statement      :   fpv_reg_access_e access_policy [5];
+  Signal         : access_policy[4:0]
+  Module         : hmac_csr_assert_fpv
+
+  -----------------------------------------------------------------------------
+  FlopEConst  (3 warnings/0 waived)
+  -----------------------------------------------------------------------------
+  Tag              : FlopEConst
+  Description      : Enable pin [Input_Pin] on Flop [DesignObjSignal] (master [MasterName]) is [CValue](connected to [ObjSrcNet])
+  Violation        : Lint:4
+  Goal             : lint_rtl
+  Module           : prim_subreg
+  MasterName       : RTL_FDCE
+  Input_Pin        : EN
+  DesignObjSignal  : u_reg/u_msg_length_upper/q[0]
+  CValue           :  always enabled (tied high)
+  ObjSrcNet        : u_reg/u_msg_length_upper/wr_en
+  FileName         : ../src/lowrisc_prim_subreg_0/rtl/prim_subreg.sv
+  LineNumber       : 57
+  Statement        :       q <= wr_data;
+  -----------------------------------------------------------------------------
+  Tag              : FlopEConst
+  Description      : Enable pin [Input_Pin] on Flop [DesignObjSignal] (master [MasterName]) is [CValue](connected to [ObjSrcNet])
+  Violation        : Lint:3
+  Goal             : lint_rtl
+  Module           : prim_subreg
+  MasterName       : RTL_FDCE
+  Input_Pin        : EN
+  DesignObjSignal  : u_reg/u_msg_length_lower/q[0]
+  CValue           :  always enabled (tied high)
+  ObjSrcNet        : u_reg/u_msg_length_lower/wr_en
+  FileName         : ../src/lowrisc_prim_subreg_0/rtl/prim_subreg.sv
+  LineNumber       : 57
+  Statement        :       q <= wr_data;
+  -----------------------------------------------------------------------------
+  Tag              : FlopEConst
+  Description      : Enable pin [Input_Pin] on Flop [DesignObjSignal] (master [MasterName]) is [CValue](connected to [ObjSrcNet])
+  Violation        : Lint:5
+  Goal             : lint_rtl
+  Module           : tlul_adapter_sram
+  MasterName       : RTL_FDCE
+  Input_Pin        : EN
+  DesignObjSignal  : u_tlul_adapter/intg_error_q
+  CValue           :  always disabled (tied low)
+  ObjSrcNet        : u_tlul_adapter/intg_error
+  FileName         : ../src/lowrisc_tlul_adapter_sram_0.1/rtl/tlul_adapter_sram.sv
+  LineNumber       : 96
+  Statement        :       intg_error_q <= 1'b1;
+
+  -----------------------------------------------------------------------------
+  STARC05-1.3.1.3  (1 warning/0 waived)
+  -----------------------------------------------------------------------------
+  Tag                 : STARC05-1.3.1.3
+  Description         : Asynchronous [SetOrReset] signal '[SeqSetRstNet]' ([FlopOrLatch]: '[DesignSeqNet]') used as non-[SetOrReset]/synchronous-[SetOrReset] at instance '[DesignInstanceName]' (File Name: '[RTL_FILENAME]' ,Line no.: '[RTL_LINE_NUM]')
+  Violation           : Lint:2
+  Goal                : lint_rtl
+  FileName            : ../src/lowrisc_ip_hmac_0.1/rtl/hmac.sv
+  LineNumber          : 573
+  Statement           :     if (!rst_ni) begin
+  SetOrReset          : reset
+  FlopOrLatch         : flop
+  SeqSetRstNet        : rst_ni
+  DesignSeqNet        : idle_q[0]
+  DesignInstanceName  : u_msg_fifo/_SVAC_21_ended_reg/D
+  RTL_FILENAME        : 
+  RTL_LINE_NUM        : 0
+  Module              : hmac
+
+  -----------------------------------------------------------------------------
+  W240  (21 warnings/0 waived)
+  -----------------------------------------------------------------------------
+  Tag           : W240
+  Description   : Input '[Signal]' declared but not read.[Hierarchy: '[HIERARCHY]']
+  Violation     : Lint:272
+  Goal          : lint_rtl
+  Module        : prim_fifo_sync
+  FileName      : ../src/lowrisc_prim_fifo_0/rtl/prim_fifo_sync.sv
+  LineNumber    : 18
+  Statement     :   input                   clk_i,
+  Signal        : clk_i
+  HIERARCHY     : :hmac:u_reg@hmac_reg_top:u_socket@tlul_socket_1n:fifo_h@tlul_fifo_sync:reqfifo@prim_fifo_sync
+  -----------------------------------------------------------------------------
+  Tag           : W240
+  Description   : Input '[Signal]' declared but not read.[Hierarchy: '[HIERARCHY]']
+  Violation     : Lint:68
+  Goal          : lint_rtl
+  Module        : sha2_pad
+  FileName      : ../src/lowrisc_ip_hmac_0.1/rtl/sha2_pad.sv
+  LineNumber    : 14
+  Statement     :   input            wipe_secret,
+  Signal        : wipe_secret
+  HIERARCHY     : :hmac:u_sha2@sha2:u_pad@sha2_pad
+  -----------------------------------------------------------------------------
+  Tag           : W240
+  Description   : Input '[Signal]' declared but not read.[Hierarchy: '[HIERARCHY]']
+  Violation     : Lint:239
+  Goal          : lint_rtl
+  Module        : prim_onehot_check
+  FileName      : ../src/lowrisc_prim_onehot_check_0/rtl/prim_onehot_check.sv
+  LineNumber    : 37
+  Statement     :   input                          clk_i,
+  Signal        : clk_i
+  HIERARCHY     : :hmac:u_reg@hmac_reg_top:u_prim_reg_we_check@prim_reg_we_check:u_prim_onehot_check@prim_onehot_check
+  -----------------------------------------------------------------------------
+  Tag           : W240
+  Description   : Input '[Signal]' declared but not read.[Hierarchy: '[HIERARCHY]']
+  Violation     : Lint:54
+  Goal          : lint_rtl
+  Module        : tlul_sram_byte
+  FileName      : ../src/lowrisc_tlul_adapter_sram_0.1/rtl/tlul_sram_byte.sv
+  LineNumber    : 22
+  Statement     :   input clk_i,
+  Signal        : clk_i
+  HIERARCHY     : :hmac:u_tlul_adapter@tlul_adapter_sram:u_sram_byte@tlul_sram_byte
+  -----------------------------------------------------------------------------
+  Tag           : W240
+  Description   : Input '[Signal]' declared but not read.[Hierarchy: '[HIERARCHY]']
+  Violation     : Lint:275
+  Goal          : lint_rtl
+  Module        : prim_fifo_sync
+  FileName      : ../src/lowrisc_prim_fifo_0/rtl/prim_fifo_sync.sv
+  LineNumber    : 18
+  Statement     :   input                   clk_i,
+  Signal        : clk_i
+  HIERARCHY     : :hmac:u_reg@hmac_reg_top:u_socket@tlul_socket_1n:fifo_h@tlul_fifo_sync:rspfifo@prim_fifo_sync
+  -----------------------------------------------------------------------------
+  Tag           : W240
+  Description   : Input '[Signal]' declared but not read.[Hierarchy: '[HIERARCHY]']
+  Violation     : Lint:48
+  Goal          : lint_rtl
+  Module        : tlul_err
+  FileName      : ../src/lowrisc_tlul_common_0.1/rtl/tlul_err.sv
+  LineNumber    : 12
+  Statement     :   input tl_h2d_t tl_i,
+  Signal        : tl_i.a_data[31:0]
+  HIERARCHY     : :hmac:u_tlul_adapter@tlul_adapter_sram:u_err@tlul_err
+  -----------------------------------------------------------------------------
+  Tag           : W240
+  Description   : Input '[Signal]' declared but not read.[Hierarchy: '[HIERARCHY]']
+  Violation     : Lint:42
+  Goal          : lint_rtl
+  Module        : tlul_err
+  FileName      : ../src/lowrisc_tlul_common_0.1/rtl/tlul_err.sv
+  LineNumber    : 10
+  Statement     :   input rst_ni,
+  Signal        : rst_ni
+  HIERARCHY     : :hmac:u_tlul_adapter@tlul_adapter_sram:u_err@tlul_err
+  -----------------------------------------------------------------------------
+  Tag           : W240
+  Description   : Input '[Signal]' declared but not read.[Hierarchy: '[HIERARCHY]']
+  Violation     : Lint:50
+  Goal          : lint_rtl
+  Module        : tlul_err
+  FileName      : ../src/lowrisc_tlul_common_0.1/rtl/tlul_err.sv
+  LineNumber    : 12
+  Statement     :   input tl_h2d_t tl_i,
+  Signal        : tl_i.a_param[2:0]
+  HIERARCHY     : :hmac:u_tlul_adapter@tlul_adapter_sram:u_err@tlul_err
+  -----------------------------------------------------------------------------
+  Tag           : W240
+  Description   : Input '[Signal]' declared but not read.[Hierarchy: '[HIERARCHY]']
+  Violation     : Lint:276
+  Goal          : lint_rtl
+  Module        : prim_fifo_sync
+  FileName      : ../src/lowrisc_prim_fifo_0/rtl/prim_fifo_sync.sv
+  LineNumber    : 19
+  Statement     :   input                   rst_ni,
+  Signal        : rst_ni
+  HIERARCHY     : :hmac:u_reg@hmac_reg_top:u_socket@tlul_socket_1n:fifo_h@tlul_fifo_sync:rspfifo@prim_fifo_sync
+  -----------------------------------------------------------------------------
+  Tag           : W240
+  Description   : Input '[Signal]' declared but not read.[Hierarchy: '[HIERARCHY]']
+  Violation     : Lint:273
+  Goal          : lint_rtl
+  Module        : prim_fifo_sync
+  FileName      : ../src/lowrisc_prim_fifo_0/rtl/prim_fifo_sync.sv
+  LineNumber    : 19
+  Statement     :   input                   rst_ni,
+  Signal        : rst_ni
+  HIERARCHY     : :hmac:u_reg@hmac_reg_top:u_socket@tlul_socket_1n:fifo_h@tlul_fifo_sync:reqfifo@prim_fifo_sync
+  -----------------------------------------------------------------------------
+  Tag           : W240
+  Description   : Input '[Signal]' declared but not read.[Hierarchy: '[HIERARCHY]']
+  Violation     : Lint:47
+  Goal          : lint_rtl
+  Module        : tlul_err
+  FileName      : ../src/lowrisc_tlul_common_0.1/rtl/tlul_err.sv
+  LineNumber    : 12
+  Statement     :   input tl_h2d_t tl_i,
+  Signal        : tl_i.a_user.rsvd[4:0]
+  HIERARCHY     : :hmac:u_tlul_adapter@tlul_adapter_sram:u_err@tlul_err
+  -----------------------------------------------------------------------------
+  Tag           : W240
+  Description   : Input '[Signal]' declared but not read.[Hierarchy: '[HIERARCHY]']
+  Violation     : Lint:43
+  Goal          : lint_rtl
+  Module        : tlul_err
+  FileName      : ../src/lowrisc_tlul_common_0.1/rtl/tlul_err.sv
+  LineNumber    : 12
+  Statement     :   input tl_h2d_t tl_i,
+  Signal        : tl_i.d_ready
+  HIERARCHY     : :hmac:u_tlul_adapter@tlul_adapter_sram:u_err@tlul_err
+  -----------------------------------------------------------------------------
+  Tag           : W240
+  Description   : Input '[Signal]' declared but not read.[Hierarchy: '[HIERARCHY]']
+  Violation     : Lint:55
+  Goal          : lint_rtl
+  Module        : tlul_sram_byte
+  FileName      : ../src/lowrisc_tlul_adapter_sram_0.1/rtl/tlul_sram_byte.sv
+  LineNumber    : 23
+  Statement     :   input rst_ni,
+  Signal        : rst_ni
+  HIERARCHY     : :hmac:u_tlul_adapter@tlul_adapter_sram:u_sram_byte@tlul_sram_byte
+  -----------------------------------------------------------------------------
+  Tag           : W240
+  Description   : Input '[Signal]' declared but not read.[Hierarchy: '[HIERARCHY]']
+  Violation     : Lint:41
+  Goal          : lint_rtl
+  Module        : tlul_err
+  FileName      : ../src/lowrisc_tlul_common_0.1/rtl/tlul_err.sv
+  LineNumber    : 9
+  Statement     :   input clk_i,
+  Signal        : clk_i
+  HIERARCHY     : :hmac:u_tlul_adapter@tlul_adapter_sram:u_err@tlul_err
+  -----------------------------------------------------------------------------
+  Tag           : W240
+  Description   : Input '[Signal]' declared but not read.[Hierarchy: '[HIERARCHY]']
+  Violation     : Lint:49
+  Goal          : lint_rtl
+  Module        : tlul_err
+  FileName      : ../src/lowrisc_tlul_common_0.1/rtl/tlul_err.sv
+  LineNumber    : 12
+  Statement     :   input tl_h2d_t tl_i,
+  Signal        : tl_i.a_source[7:0]
+  HIERARCHY     : :hmac:u_tlul_adapter@tlul_adapter_sram:u_err@tlul_err
+  -----------------------------------------------------------------------------
+  Tag           : W240
+  Description   : Input '[Signal]' declared but not read.[Hierarchy: '[HIERARCHY]']
+  Violation     : Lint:69
+  Goal          : lint_rtl
+  Module        : sha2_pad
+  FileName      : ../src/lowrisc_ip_hmac_0.1/rtl/sha2_pad.sv
+  LineNumber    : 15
+  Statement     :   input sha_word_t wipe_v,
+  Signal        : wipe_v[31:0]
+  HIERARCHY     : :hmac:u_sha2@sha2:u_pad@sha2_pad
+  -----------------------------------------------------------------------------
+  Tag           : W240
+  Description   : Input '[Signal]' declared but not read.[Hierarchy: '[HIERARCHY]']
+  Violation     : Lint:67
+  Goal          : lint_rtl
+  Module        : hmac_core
+  FileName      : ../src/lowrisc_ip_hmac_0.1/rtl/hmac_core.sv
+  LineNumber    : 14
+  Statement     :   input [31:0] wipe_v,
+  Signal        : wipe_v[31:0]
+  HIERARCHY     : :hmac:u_hmac@hmac_core
+  -----------------------------------------------------------------------------
+  Tag           : W240
+  Description   : Input '[Signal]' declared but not read.[Hierarchy: '[HIERARCHY]']
+  Violation     : Lint:240
+  Goal          : lint_rtl
+  Module        : prim_onehot_check
+  FileName      : ../src/lowrisc_prim_onehot_check_0/rtl/prim_onehot_check.sv
+  LineNumber    : 38
+  Statement     :   input                          rst_ni,
+  Signal        : rst_ni
+  HIERARCHY     : :hmac:u_reg@hmac_reg_top:u_prim_reg_we_check@prim_reg_we_check:u_prim_onehot_check@prim_onehot_check
+  -----------------------------------------------------------------------------
+  Tag           : W240
+  Description   : Input '[Signal]' declared but not read.[Hierarchy: '[HIERARCHY]']
+  Violation     : Lint:46
+  Goal          : lint_rtl
+  Module        : tlul_err
+  FileName      : ../src/lowrisc_tlul_common_0.1/rtl/tlul_err.sv
+  LineNumber    : 12
+  Statement     :   input tl_h2d_t tl_i,
+  Signal        : tl_i.a_user.cmd_intg[6:0]
+  HIERARCHY     : :hmac:u_tlul_adapter@tlul_adapter_sram:u_err@tlul_err
+  -----------------------------------------------------------------------------
+  Tag           : W240
+  Description   : Input '[Signal]' declared but not read.[Hierarchy: '[HIERARCHY]']
+  Violation     : Lint:66
+  Goal          : lint_rtl
+  Module        : hmac_core
+  FileName      : ../src/lowrisc_ip_hmac_0.1/rtl/hmac_core.sv
+  LineNumber    : 13
+  Statement     :   input        wipe_secret,
+  Signal        : wipe_secret
+  HIERARCHY     : :hmac:u_hmac@hmac_core
+  -----------------------------------------------------------------------------
+  Tag           : W240
+  Description   : Input '[Signal]' declared but not read.[Hierarchy: '[HIERARCHY]']
+  Violation     : Lint:45
+  Goal          : lint_rtl
+  Module        : tlul_err
+  FileName      : ../src/lowrisc_tlul_common_0.1/rtl/tlul_err.sv
+  LineNumber    : 12
+  Statement     :   input tl_h2d_t tl_i,
+  Signal        : tl_i.a_user.data_intg[6:0]
+  HIERARCHY     : :hmac:u_tlul_adapter@tlul_adapter_sram:u_err@tlul_err
+
+  -----------------------------------------------------------------------------
+  W287b  (155 warnings/0 waived)
+  -----------------------------------------------------------------------------
+  Tag           : W287b
+  Description   : Instance output port '[ModPortName]' is not connected
+  Violation     : Lint:228
+  Goal          : lint_rtl
+  Module        : hmac_reg_top
+  FileName      : ../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv
+  LineNumber    : 1034
+  Statement     :     .qe     (),
+  ModPortName   : qe
+  -----------------------------------------------------------------------------
+  Tag           : W287b
+  Description   : Instance output port '[ModPortName]' is not connected
+  Violation     : Lint:113
+  Goal          : lint_rtl
+  Module        : hmac_reg_top
+  FileName      : ../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv
+  LineNumber    : 271
+  Statement     :     .qe     (),
+  ModPortName   : qe
+  -----------------------------------------------------------------------------
+  Tag           : W287b
+  Description   : Instance output port '[ModPortName]' is not connected
+  Violation     : Lint:173
+  Goal          : lint_rtl
+  Module        : hmac_reg_top
+  FileName      : ../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv
+  LineNumber    : 721
+  Statement     :     .ds     (),
+  ModPortName   : ds
+  -----------------------------------------------------------------------------
+  Tag           : W287b
+  Description   : Instance output port '[ModPortName]' is not connected
+  Violation     : Lint:160
+  Goal          : lint_rtl
+  Module        : hmac_reg_top
+  FileName      : ../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv
+  LineNumber    : 630
+  Statement     :     .qre    (),
+  ModPortName   : qre
+  -----------------------------------------------------------------------------
+  Tag           : W287b
+  Description   : Instance output port '[ModPortName]' is not connected
+  Violation     : Lint:171
+  Goal          : lint_rtl
+  Module        : hmac_reg_top
+  FileName      : ../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv
+  LineNumber    : 701
+  Statement     :     .qs     ()
+  ModPortName   : qs
+  -----------------------------------------------------------------------------
+  Tag           : W287b
+  Description   : Instance output port '[ModPortName]' is not connected
+  Violation     : Lint:199
+  Goal          : lint_rtl
+  Module        : hmac_reg_top
+  FileName      : ../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv
+  LineNumber    : 881
+  Statement     :     .q      (),
+  ModPortName   : q
+  -----------------------------------------------------------------------------
+  Tag           : W287b
+  Description   : Instance output port '[ModPortName]' is not connected
+  Violation     : Lint:211
+  Goal          : lint_rtl
+  Module        : hmac_reg_top
+  FileName      : ../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv
+  LineNumber    : 932
+  Statement     :     .q      (),
+  ModPortName   : q
+  -----------------------------------------------------------------------------
+  Tag           : W287b
+  Description   : Instance output port '[ModPortName]' is not connected
+  Violation     : Lint:215
+  Goal          : lint_rtl
+  Module        : hmac_reg_top
+  FileName      : ../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv
+  LineNumber    : 949
+  Statement     :     .q      (),
+  ModPortName   : q
+  -----------------------------------------------------------------------------
+  Tag           : W287b
+  Description   : Instance output port '[ModPortName]' is not connected
+  Violation     : Lint:124
+  Goal          : lint_rtl
+  Module        : hmac_reg_top
+  FileName      : ../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv
+  LineNumber    : 405
+  Statement     :     .ds     (),
+  ModPortName   : ds
+  -----------------------------------------------------------------------------
+  Tag           : W287b
+  Description   : Instance output port '[ModPortName]' is not connected
+  Violation     : Lint:130
+  Goal          : lint_rtl
+  Module        : hmac_reg_top
+  FileName      : ../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv
+  LineNumber    : 444
+  Statement     :     .qs     ()
+  ModPortName   : qs
+  -----------------------------------------------------------------------------
+  Tag           : W287b
+  Description   : Instance output port '[ModPortName]' is not connected
+  Violation     : Lint:30
+  Goal          : lint_rtl
+  Module        : tlul_adapter_sram
+  FileName      : ../src/lowrisc_tlul_adapter_sram_0.1/rtl/tlul_adapter_sram.sv
+  LineNumber    : 502
+  Statement     :     .depth_o (),
+  ModPortName   : depth_o
+  -----------------------------------------------------------------------------
+  Tag           : W287b
+  Description   : Instance output port '[ModPortName]' is not connected
+  Violation     : Lint:17
+  Goal          : lint_rtl
+  Module        : hmac
+  FileName      : ../src/lowrisc_ip_hmac_0.1/rtl/hmac.sv
+  LineNumber    : 384
+  Statement     :     .err_o  () // Not used
+  ModPortName   : err_o
+  -----------------------------------------------------------------------------
+  Tag           : W287b
+  Description   : Instance output port '[ModPortName]' is not connected
+  Violation     : Lint:116
+  Goal          : lint_rtl
+  Module        : hmac_reg_top
+  FileName      : ../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv
+  LineNumber    : 299
+  Statement     :     .ds     (),
+  ModPortName   : ds
+  -----------------------------------------------------------------------------
+  Tag           : W287b
+  Description   : Instance output port '[ModPortName]' is not connected
+  Violation     : Lint:217
+  Goal          : lint_rtl
+  Module        : hmac_reg_top
+  FileName      : ../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv
+  LineNumber    : 965
+  Statement     :     .qe     (),
+  ModPortName   : qe
+  -----------------------------------------------------------------------------
+  Tag           : W287b
+  Description   : Instance output port '[ModPortName]' is not connected
+  Violation     : Lint:159
+  Goal          : lint_rtl
+  Module        : hmac_reg_top
+  FileName      : ../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv
+  LineNumber    : 631
+  Statement     :     .qe     (),
+  ModPortName   : qe
+  -----------------------------------------------------------------------------
+  Tag           : W287b
+  Description   : Instance output port '[ModPortName]' is not connected
+  Violation     : Lint:32
+  Goal          : lint_rtl
+  Module        : tlul_adapter_sram
+  FileName      : ../src/lowrisc_tlul_adapter_sram_0.1/rtl/tlul_adapter_sram.sv
+  LineNumber    : 527
+  Statement     :     .full_o  (),
+  ModPortName   : full_o
+  -----------------------------------------------------------------------------
+  Tag           : W287b
+  Description   : Instance output port '[ModPortName]' is not connected
+  Violation     : Lint:290
+  Goal          : lint_rtl
+  Module        : prim_alert_sender
+  FileName      : ../src/lowrisc_prim_alert_0/rtl/prim_alert_sender.sv
+  LineNumber    : 120
+  Statement     :     .event_o  (            ),
+  ModPortName   : event_o
+  -----------------------------------------------------------------------------
+  Tag           : W287b
+  Description   : Instance output port '[ModPortName]' is not connected
+  Violation     : Lint:133
+  Goal          : lint_rtl
+  Module        : hmac_reg_top
+  FileName      : ../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv
+  LineNumber    : 460
+  Statement     :     .qs     ()
+  ModPortName   : qs
+  -----------------------------------------------------------------------------
+  Tag           : W287b
+  Description   : Instance output port '[ModPortName]' is not connected
+  Violation     : Lint:182
+  Goal          : lint_rtl
+  Module        : hmac_reg_top
+  FileName      : ../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv
+  LineNumber    : 784
+  Statement     :     .ds     (),
+  ModPortName   : ds
+  -----------------------------------------------------------------------------
+  Tag           : W287b
+  Description   : Instance output port '[ModPortName]' is not connected
+  Violation     : Lint:148
+  Goal          : lint_rtl
+  Module        : hmac_reg_top
+  FileName      : ../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv
+  LineNumber    : 582
+  Statement     :     .qre    (),
+  ModPortName   : qre
+  -----------------------------------------------------------------------------
+  Tag           : W287b
+  Description   : Instance output port '[ModPortName]' is not connected
+  Violation     : Lint:184
+  Goal          : lint_rtl
+  Module        : hmac_reg_top
+  FileName      : ../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv
+  LineNumber    : 802
+  Statement     :     .qre    (),
+  ModPortName   : qre
+  -----------------------------------------------------------------------------
+  Tag           : W287b
+  Description   : Instance output port '[ModPortName]' is not connected
+  Violation     : Lint:15
+  Goal          : lint_rtl
+  Module        : hmac
+  FileName      : ../src/lowrisc_ip_hmac_0.1/rtl/hmac.sv
+  LineNumber    : 315
+  Statement     :     .addr_o      (               ), // Doesn't care the address other than sub-word
+  ModPortName   : addr_o
+  -----------------------------------------------------------------------------
+  Tag           : W287b
+  Description   : Instance output port '[ModPortName]' is not connected
+  Violation     : Lint:121
+  Goal          : lint_rtl
+  Module        : hmac_reg_top
+  FileName      : ../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv
+  LineNumber    : 377
+  Statement     :     .qe     (),
+  ModPortName   : qe
+  -----------------------------------------------------------------------------
+  Tag           : W287b
+  Description   : Instance output port '[ModPortName]' is not connected
+  Violation     : Lint:143
+  Goal          : lint_rtl
+  Module        : hmac_reg_top
+  FileName      : ../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv
+  LineNumber    : 545
+  Statement     :     .qre    (),
+  ModPortName   : qre
+  -----------------------------------------------------------------------------
+  Tag           : W287b
+  Description   : Instance output port '[ModPortName]' is not connected
+  Violation     : Lint:118
+  Goal          : lint_rtl
+  Module        : hmac_reg_top
+  FileName      : ../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv
+  LineNumber    : 325
+  Statement     :     .ds     (),
+  ModPortName   : ds
+  -----------------------------------------------------------------------------
+  Tag           : W287b
+  Description   : Instance output port '[ModPortName]' is not connected
+  Violation     : Lint:132
+  Goal          : lint_rtl
+  Module        : hmac_reg_top
+  FileName      : ../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv
+  LineNumber    : 459
+  Statement     :     .ds     (),
+  ModPortName   : ds
+  -----------------------------------------------------------------------------
+  Tag           : W287b
+  Description   : Instance output port '[ModPortName]' is not connected
+  Violation     : Lint:189
+  Goal          : lint_rtl
+  Module        : hmac_reg_top
+  FileName      : ../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv
+  LineNumber    : 827
+  Statement     :     .qs     ()
+  ModPortName   : qs
+  -----------------------------------------------------------------------------
+  Tag           : W287b
+  Description   : Instance output port '[ModPortName]' is not connected
+  Violation     : Lint:123
+  Goal          : lint_rtl
+  Module        : hmac_reg_top
+  FileName      : ../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv
+  LineNumber    : 403
+  Statement     :     .qe     (),
+  ModPortName   : qe
+  -----------------------------------------------------------------------------
+  Tag           : W287b
+  Description   : Instance output port '[ModPortName]' is not connected
+  Violation     : Lint:31
+  Goal          : lint_rtl
+  Module        : tlul_adapter_sram
+  FileName      : ../src/lowrisc_tlul_adapter_sram_0.1/rtl/tlul_adapter_sram.sv
+  LineNumber    : 503
+  Statement     :     .err_o   ()
+  ModPortName   : err_o
+  -----------------------------------------------------------------------------
+  Tag           : W287b
+  Description   : Instance output port '[ModPortName]' is not connected
+  Violation     : Lint:161
+  Goal          : lint_rtl
+  Module        : hmac_reg_top
+  FileName      : ../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv
+  LineNumber    : 632
+  Statement     :     .q      (),
+  ModPortName   : q
+  -----------------------------------------------------------------------------
+  Tag           : W287b
+  Description   : Instance output port '[ModPortName]' is not connected
+  Violation     : Lint:131
+  Goal          : lint_rtl
+  Module        : hmac_reg_top
+  FileName      : ../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv
+  LineNumber    : 456
+  Statement     :     .qre    (),
+  ModPortName   : qre
+  -----------------------------------------------------------------------------
+  Tag           : W287b
+  Description   : Instance output port '[ModPortName]' is not connected
+  Violation     : Lint:212
+  Goal          : lint_rtl
+  Module        : hmac_reg_top
+  FileName      : ../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv
+  LineNumber    : 933
+  Statement     :     .ds     (),
+  ModPortName   : ds
+  -----------------------------------------------------------------------------
+  Tag           : W287b
+  Description   : Instance output port '[ModPortName]' is not connected
+  Violation     : Lint:270
+  Goal          : lint_rtl
+  Module        : tlul_fifo_sync
+  FileName      : ../src/lowrisc_tlul_common_0.1/rtl/tlul_fifo_sync.sv
+  LineNumber    : 94
+  Statement     :     .depth_o       (),
+  ModPortName   : depth_o
+  -----------------------------------------------------------------------------
+  Tag           : W287b
+  Description   : Instance output port '[ModPortName]' is not connected
+  Violation     : Lint:175
+  Goal          : lint_rtl
+  Module        : hmac_reg_top
+  FileName      : ../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv
+  LineNumber    : 739
+  Statement     :     .qre    (),
+  ModPortName   : qre
+  -----------------------------------------------------------------------------
+  Tag           : W287b
+  Description   : Instance output port '[ModPortName]' is not connected
+  Violation     : Lint:206
+  Goal          : lint_rtl
+  Module        : hmac_reg_top
+  FileName      : ../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv
+  LineNumber    : 913
+  Statement     :     .qre    (),
+  ModPortName   : qre
+  -----------------------------------------------------------------------------
+  Tag           : W287b
+  Description   : Instance output port '[ModPortName]' is not connected
+  Violation     : Lint:26
+  Goal          : lint_rtl
+  Module        : tlul_adapter_sram
+  FileName      : ../src/lowrisc_tlul_adapter_sram_0.1/rtl/tlul_adapter_sram.sv
+  LineNumber    : 479
+  Statement     :     .depth_o (),
+  ModPortName   : depth_o
+  -----------------------------------------------------------------------------
+  Tag           : W287b
+  Description   : Instance output port '[ModPortName]' is not connected
+  Violation     : Lint:258
+  Goal          : lint_rtl
+  Module        : tlul_socket_1n
+  FileName      : ../src/lowrisc_tlul_socket_1n_0.1/rtl/tlul_socket_1n.sv
+  LineNumber    : 99
+  Statement     :     .spare_rsp_o ());
+  ModPortName   : spare_rsp_o
+  -----------------------------------------------------------------------------
+  Tag           : W287b
+  Description   : Instance output port '[ModPortName]' is not connected
+  Violation     : Lint:266
+  Goal          : lint_rtl
+  Module        : tlul_fifo_sync
+  FileName      : ../src/lowrisc_tlul_common_0.1/rtl/tlul_fifo_sync.sv
+  LineNumber    : 58
+  Statement     :     .full_o        (),
+  ModPortName   : full_o
+  -----------------------------------------------------------------------------
+  Tag           : W287b
+  Description   : Instance output port '[ModPortName]' is not connected
+  Violation     : Lint:188
+  Goal          : lint_rtl
+  Module        : hmac_reg_top
+  FileName      : ../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv
+  LineNumber    : 826
+  Statement     :     .ds     (),
+  ModPortName   : ds
+  -----------------------------------------------------------------------------
+  Tag           : W287b
+  Description   : Instance output port '[ModPortName]' is not connected
+  Violation     : Lint:268
+  Goal          : lint_rtl
+  Module        : tlul_fifo_sync
+  FileName      : ../src/lowrisc_tlul_common_0.1/rtl/tlul_fifo_sync.sv
+  LineNumber    : 60
+  Statement     :     .err_o         ());
+  ModPortName   : err_o
+  -----------------------------------------------------------------------------
+  Tag           : W287b
+  Description   : Instance output port '[ModPortName]' is not connected
+  Violation     : Lint:286
+  Goal          : lint_rtl
+  Module        : prim_alert_sender
+  FileName      : ../src/lowrisc_prim_alert_0/rtl/prim_alert_sender.sv
+  LineNumber    : 92
+  Statement     :     .rise_o   (             ),
+  ModPortName   : rise_o
+  -----------------------------------------------------------------------------
+  Tag           : W287b
+  Description   : Instance output port '[ModPortName]' is not connected
+  Violation     : Lint:218
+  Goal          : lint_rtl
+  Module        : hmac_reg_top
+  FileName      : ../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv
+  LineNumber    : 964
+  Statement     :     .qre    (),
+  ModPortName   : qre
+  -----------------------------------------------------------------------------
+  Tag           : W287b
+  Description   : Instance output port '[ModPortName]' is not connected
+  Violation     : Lint:214
+  Goal          : lint_rtl
+  Module        : hmac_reg_top
+  FileName      : ../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv
+  LineNumber    : 947
+  Statement     :     .qre    (),
+  ModPortName   : qre
+  -----------------------------------------------------------------------------
+  Tag           : W287b
+  Description   : Instance output port '[ModPortName]' is not connected
+  Violation     : Lint:136
+  Goal          : lint_rtl
+  Module        : hmac_reg_top
+  FileName      : ../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv
+  LineNumber    : 480
+  Statement     :     .qs     ()
+  ModPortName   : qs
+  -----------------------------------------------------------------------------
+  Tag           : W287b
+  Description   : Instance output port '[ModPortName]' is not connected
+  Violation     : Lint:226
+  Goal          : lint_rtl
+  Module        : hmac_reg_top
+  FileName      : ../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv
+  LineNumber    : 1008
+  Statement     :     .q      (),
+  ModPortName   : q
+  -----------------------------------------------------------------------------
+  Tag           : W287b
+  Description   : Instance output port '[ModPortName]' is not connected
+  Violation     : Lint:141
+  Goal          : lint_rtl
+  Module        : hmac_reg_top
+  FileName      : ../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv
+  LineNumber    : 529
+  Statement     :     .qre    (),
+  ModPortName   : qre
+  -----------------------------------------------------------------------------
+  Tag           : W287b
+  Description   : Instance output port '[ModPortName]' is not connected
+  Violation     : Lint:145
+  Goal          : lint_rtl
+  Module        : hmac_reg_top
+  FileName      : ../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv
+  LineNumber    : 566
+  Statement     :     .qre    (),
+  ModPortName   : qre
+  -----------------------------------------------------------------------------
+  Tag           : W287b
+  Description   : Instance output port '[ModPortName]' is not connected
+  Violation     : Lint:172
+  Goal          : lint_rtl
+  Module        : hmac_reg_top
+  FileName      : ../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv
+  LineNumber    : 718
+  Statement     :     .qre    (),
+  ModPortName   : qre
+  -----------------------------------------------------------------------------
+  Tag           : W287b
+  Description   : Instance output port '[ModPortName]' is not connected
+  Violation     : Lint:12
+  Goal          : lint_rtl
+  Module        : hmac
+  FileName      : ../src/lowrisc_ip_hmac_0.1/rtl/hmac.sv
+  LineNumber    : 290
+  Statement     :     .full_o  (),
+  ModPortName   : full_o
+  -----------------------------------------------------------------------------
+  Tag           : W287b
+  Description   : Instance output port '[ModPortName]' is not connected
+  Violation     : Lint:181
+  Goal          : lint_rtl
+  Module        : hmac_reg_top
+  FileName      : ../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv
+  LineNumber    : 781
+  Statement     :     .qre    (),
+  ModPortName   : qre
+  -----------------------------------------------------------------------------
+  Tag           : W287b
+  Description   : Instance output port '[ModPortName]' is not connected
+  Violation     : Lint:187
+  Goal          : lint_rtl
+  Module        : hmac_reg_top
+  FileName      : ../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv
+  LineNumber    : 823
+  Statement     :     .qre    (),
+  ModPortName   : qre
+  -----------------------------------------------------------------------------
+  Tag           : W287b
+  Description   : Instance output port '[ModPortName]' is not connected
+  Violation     : Lint:196
+  Goal          : lint_rtl
+  Module        : hmac_reg_top
+  FileName      : ../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv
+  LineNumber    : 865
+  Statement     :     .ds     (),
+  ModPortName   : ds
+  -----------------------------------------------------------------------------
+  Tag           : W287b
+  Description   : Instance output port '[ModPortName]' is not connected
+  Violation     : Lint:154
+  Goal          : lint_rtl
+  Module        : hmac_reg_top
+  FileName      : ../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv
+  LineNumber    : 603
+  Statement     :     .ds     (),
+  ModPortName   : ds
+  -----------------------------------------------------------------------------
+  Tag           : W287b
+  Description   : Instance output port '[ModPortName]' is not connected
+  Violation     : Lint:27
+  Goal          : lint_rtl
+  Module        : tlul_adapter_sram
+  FileName      : ../src/lowrisc_tlul_adapter_sram_0.1/rtl/tlul_adapter_sram.sv
+  LineNumber    : 480
+  Statement     :     .err_o   ()
+  ModPortName   : err_o
+  -----------------------------------------------------------------------------
+  Tag           : W287b
+  Description   : Instance output port '[ModPortName]' is not connected
+  Violation     : Lint:135
+  Goal          : lint_rtl
+  Module        : hmac_reg_top
+  FileName      : ../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv
+  LineNumber    : 479
+  Statement     :     .ds     (),
+  ModPortName   : ds
+  -----------------------------------------------------------------------------
+  Tag           : W287b
+  Description   : Instance output port '[ModPortName]' is not connected
+  Violation     : Lint:269
+  Goal          : lint_rtl
+  Module        : tlul_fifo_sync
+  FileName      : ../src/lowrisc_tlul_common_0.1/rtl/tlul_fifo_sync.sv
+  LineNumber    : 93
+  Statement     :     .full_o        (),
+  ModPortName   : full_o
+  -----------------------------------------------------------------------------
+  Tag           : W287b
+  Description   : Instance output port '[ModPortName]' is not connected
+  Violation     : Lint:289
+  Goal          : lint_rtl
+  Module        : prim_alert_sender
+  FileName      : ../src/lowrisc_prim_alert_0/rtl/prim_alert_sender.sv
+  LineNumber    : 119
+  Statement     :     .fall_o   (            ),
+  ModPortName   : fall_o
+  -----------------------------------------------------------------------------
+  Tag           : W287b
+  Description   : Instance output port '[ModPortName]' is not connected
+  Violation     : Lint:205
+  Goal          : lint_rtl
+  Module        : hmac_reg_top
+  FileName      : ../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv
+  LineNumber    : 914
+  Statement     :     .qe     (),
+  ModPortName   : qe
+  -----------------------------------------------------------------------------
+  Tag           : W287b
+  Description   : Instance output port '[ModPortName]' is not connected
+  Violation     : Lint:185
+  Goal          : lint_rtl
+  Module        : hmac_reg_top
+  FileName      : ../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv
+  LineNumber    : 805
+  Statement     :     .ds     (),
+  ModPortName   : ds
+  -----------------------------------------------------------------------------
+  Tag           : W287b
+  Description   : Instance output port '[ModPortName]' is not connected
+  Violation     : Lint:125
+  Goal          : lint_rtl
+  Module        : hmac_reg_top
+  FileName      : ../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv
+  LineNumber    : 424
+  Statement     :     .qre    (),
+  ModPortName   : qre
+  -----------------------------------------------------------------------------
+  Tag           : W287b
+  Description   : Instance output port '[ModPortName]' is not connected
+  Violation     : Lint:127
+  Goal          : lint_rtl
+  Module        : hmac_reg_top
+  FileName      : ../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv
+  LineNumber    : 428
+  Statement     :     .qs     ()
+  ModPortName   : qs
+  -----------------------------------------------------------------------------
+  Tag           : W287b
+  Description   : Instance output port '[ModPortName]' is not connected
+  Violation     : Lint:178
+  Goal          : lint_rtl
+  Module        : hmac_reg_top
+  FileName      : ../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv
+  LineNumber    : 760
+  Statement     :     .qre    (),
+  ModPortName   : qre
+  -----------------------------------------------------------------------------
+  Tag           : W287b
+  Description   : Instance output port '[ModPortName]' is not connected
+  Violation     : Lint:186
+  Goal          : lint_rtl
+  Module        : hmac_reg_top
+  FileName      : ../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv
+  LineNumber    : 806
+  Statement     :     .qs     ()
+  ModPortName   : qs
+  -----------------------------------------------------------------------------
+  Tag           : W287b
+  Description   : Instance output port '[ModPortName]' is not connected
+  Violation     : Lint:144
+  Goal          : lint_rtl
+  Module        : hmac_reg_top
+  FileName      : ../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv
+  LineNumber    : 548
+  Statement     :     .ds     (),
+  ModPortName   : ds
+  -----------------------------------------------------------------------------
+  Tag           : W287b
+  Description   : Instance output port '[ModPortName]' is not connected
+  Violation     : Lint:120
+  Goal          : lint_rtl
+  Module        : hmac_reg_top
+  FileName      : ../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv
+  LineNumber    : 353
+  Statement     :     .ds     (),
+  ModPortName   : ds
+  -----------------------------------------------------------------------------
+  Tag           : W287b
+  Description   : Instance output port '[ModPortName]' is not connected
+  Violation     : Lint:167
+  Goal          : lint_rtl
+  Module        : hmac_reg_top
+  FileName      : ../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv
+  LineNumber    : 679
+  Statement     :     .ds     (),
+  ModPortName   : ds
+  -----------------------------------------------------------------------------
+  Tag           : W287b
+  Description   : Instance output port '[ModPortName]' is not connected
+  Violation     : Lint:14
+  Goal          : lint_rtl
+  Module        : hmac
+  FileName      : ../src/lowrisc_ip_hmac_0.1/rtl/hmac.sv
+  LineNumber    : 312
+  Statement     :     .req_type_o  (               ),
+  ModPortName   : req_type_o
+  -----------------------------------------------------------------------------
+  Tag           : W287b
+  Description   : Instance output port '[ModPortName]' is not connected
+  Violation     : Lint:221
+  Goal          : lint_rtl
+  Module        : hmac_reg_top
+  FileName      : ../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv
+  LineNumber    : 982
+  Statement     :     .qe     (),
+  ModPortName   : qe
+  -----------------------------------------------------------------------------
+  Tag           : W287b
+  Description   : Instance output port '[ModPortName]' is not connected
+  Violation     : Lint:150
+  Goal          : lint_rtl
+  Module        : hmac_reg_top
+  FileName      : ../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv
+  LineNumber    : 586
+  Statement     :     .qs     ()
+  ModPortName   : qs
+  -----------------------------------------------------------------------------
+  Tag           : W287b
+  Description   : Instance output port '[ModPortName]' is not connected
+  Violation     : Lint:288
+  Goal          : lint_rtl
+  Module        : prim_alert_sender
+  FileName      : ../src/lowrisc_prim_alert_0/rtl/prim_alert_sender.sv
+  LineNumber    : 118
+  Statement     :     .rise_o   (            ),
+  ModPortName   : rise_o
+  -----------------------------------------------------------------------------
+  Tag           : W287b
+  Description   : Instance output port '[ModPortName]' is not connected
+  Violation     : Lint:233
+  Goal          : lint_rtl
+  Module        : tlul_cmd_intg_chk
+  FileName      : ../src/lowrisc_tlul_trans_intg_0.1/rtl/tlul_cmd_intg_chk.sv
+  LineNumber    : 26
+  Statement     :     .data_o(),
+  ModPortName   : data_o
+  -----------------------------------------------------------------------------
+  Tag           : W287b
+  Description   : Instance output port '[ModPortName]' is not connected
+  Violation     : Lint:137
+  Goal          : lint_rtl
+  Module        : hmac_reg_top
+  FileName      : ../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv
+  LineNumber    : 497
+  Statement     :     .qre    (),
+  ModPortName   : qre
+  -----------------------------------------------------------------------------
+  Tag           : W287b
+  Description   : Instance output port '[ModPortName]' is not connected
+  Violation     : Lint:267
+  Goal          : lint_rtl
+  Module        : tlul_fifo_sync
+  FileName      : ../src/lowrisc_tlul_common_0.1/rtl/tlul_fifo_sync.sv
+  LineNumber    : 59
+  Statement     :     .depth_o       (),
+  ModPortName   : depth_o
+  -----------------------------------------------------------------------------
+  Tag           : W287b
+  Description   : Instance output port '[ModPortName]' is not connected
+  Violation     : Lint:29
+  Goal          : lint_rtl
+  Module        : tlul_adapter_sram
+  FileName      : ../src/lowrisc_tlul_adapter_sram_0.1/rtl/tlul_adapter_sram.sv
+  LineNumber    : 501
+  Statement     :     .full_o  (),
+  ModPortName   : full_o
+  -----------------------------------------------------------------------------
+  Tag           : W287b
+  Description   : Instance output port '[ModPortName]' is not connected
+  Violation     : Lint:201
+  Goal          : lint_rtl
+  Module        : hmac_reg_top
+  FileName      : ../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv
+  LineNumber    : 897
+  Statement     :     .qe     (),
+  ModPortName   : qe
+  -----------------------------------------------------------------------------
+  Tag           : W287b
+  Description   : Instance output port '[ModPortName]' is not connected
+  Violation     : Lint:115
+  Goal          : lint_rtl
+  Module        : hmac_reg_top
+  FileName      : ../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv
+  LineNumber    : 297
+  Statement     :     .qe     (),
+  ModPortName   : qe
+  -----------------------------------------------------------------------------
+  Tag           : W287b
+  Description   : Instance output port '[ModPortName]' is not connected
+  Violation     : Lint:222
+  Goal          : lint_rtl
+  Module        : hmac_reg_top
+  FileName      : ../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv
+  LineNumber    : 981
+  Statement     :     .qre    (),
+  ModPortName   : qre
+  -----------------------------------------------------------------------------
+  Tag           : W287b
+  Description   : Instance output port '[ModPortName]' is not connected
+  Violation     : Lint:149
+  Goal          : lint_rtl
+  Module        : hmac_reg_top
+  FileName      : ../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv
+  LineNumber    : 585
+  Statement     :     .ds     (),
+  ModPortName   : ds
+  -----------------------------------------------------------------------------
+  Tag           : W287b
+  Description   : Instance output port '[ModPortName]' is not connected
+  Violation     : Lint:260
+  Goal          : lint_rtl
+  Module        : tlul_socket_1n
+  FileName      : ../src/lowrisc_tlul_socket_1n_0.1/rtl/tlul_socket_1n.sv
+  LineNumber    : 222
+  Statement     :       .spare_rsp_o ());
+  ModPortName   : spare_rsp_o
+  -----------------------------------------------------------------------------
+  Tag           : W287b
+  Description   : Instance output port '[ModPortName]' is not connected
+  Violation     : Lint:183
+  Goal          : lint_rtl
+  Module        : hmac_reg_top
+  FileName      : ../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv
+  LineNumber    : 785
+  Statement     :     .qs     ()
+  ModPortName   : qs
+  -----------------------------------------------------------------------------
+  Tag           : W287b
+  Description   : Instance output port '[ModPortName]' is not connected
+  Violation     : Lint:197
+  Goal          : lint_rtl
+  Module        : hmac_reg_top
+  FileName      : ../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv
+  LineNumber    : 880
+  Statement     :     .qe     (),
+  ModPortName   : qe
+  -----------------------------------------------------------------------------
+  Tag           : W287b
+  Description   : Instance output port '[ModPortName]' is not connected
+  Violation     : Lint:158
+  Goal          : lint_rtl
+  Module        : hmac_reg_top
+  FileName      : ../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv
+  LineNumber    : 618
+  Statement     :     .ds     (),
+  ModPortName   : ds
+  -----------------------------------------------------------------------------
+  Tag           : W287b
+  Description   : Instance output port '[ModPortName]' is not connected
+  Violation     : Lint:194
+  Goal          : lint_rtl
+  Module        : hmac_reg_top
+  FileName      : ../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv
+  LineNumber    : 862
+  Statement     :     .qre    (),
+  ModPortName   : qre
+  -----------------------------------------------------------------------------
+  Tag           : W287b
+  Description   : Instance output port '[ModPortName]' is not connected
+  Violation     : Lint:285
+  Goal          : lint_rtl
+  Module        : prim_alert_sender
+  FileName      : ../src/lowrisc_prim_alert_0/rtl/prim_alert_sender.sv
+  LineNumber    : 91
+  Statement     :     .level_o  (             ),
+  ModPortName   : level_o
+  -----------------------------------------------------------------------------
+  Tag           : W287b
+  Description   : Instance output port '[ModPortName]' is not connected
+  Violation     : Lint:16
+  Goal          : lint_rtl
+  Module        : hmac
+  FileName      : ../src/lowrisc_ip_hmac_0.1/rtl/hmac.sv
+  LineNumber    : 318
+  Statement     :     .intg_error_o(               ),
+  ModPortName   : intg_error_o
+  -----------------------------------------------------------------------------
+  Tag           : W287b
+  Description   : Instance output port '[ModPortName]' is not connected
+  Violation     : Lint:227
+  Goal          : lint_rtl
+  Module        : hmac_reg_top
+  FileName      : ../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv
+  LineNumber    : 1009
+  Statement     :     .ds     (),
+  ModPortName   : ds
+  -----------------------------------------------------------------------------
+  Tag           : W287b
+  Description   : Instance output port '[ModPortName]' is not connected
+  Violation     : Lint:25
+  Goal          : lint_rtl
+  Module        : tlul_adapter_sram
+  FileName      : ../src/lowrisc_tlul_adapter_sram_0.1/rtl/tlul_adapter_sram.sv
+  LineNumber    : 478
+  Statement     :     .full_o  (),
+  ModPortName   : full_o
+  -----------------------------------------------------------------------------
+  Tag           : W287b
+  Description   : Instance output port '[ModPortName]' is not connected
+  Violation     : Lint:151
+  Goal          : lint_rtl
+  Module        : hmac_reg_top
+  FileName      : ../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv
+  LineNumber    : 601
+  Statement     :     .qe     (),
+  ModPortName   : qe
+  -----------------------------------------------------------------------------
+  Tag           : W287b
+  Description   : Instance output port '[ModPortName]' is not connected
+  Violation     : Lint:129
+  Goal          : lint_rtl
+  Module        : hmac_reg_top
+  FileName      : ../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv
+  LineNumber    : 443
+  Statement     :     .ds     (),
+  ModPortName   : ds
+  -----------------------------------------------------------------------------
+  Tag           : W287b
+  Description   : Instance output port '[ModPortName]' is not connected
+  Violation     : Lint:229
+  Goal          : lint_rtl
+  Module        : hmac_reg_top
+  FileName      : ../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv
+  LineNumber    : 1035
+  Statement     :     .q      (),
+  ModPortName   : q
+  -----------------------------------------------------------------------------
+  Tag           : W287b
+  Description   : Instance output port '[ModPortName]' is not connected
+  Violation     : Lint:210
+  Goal          : lint_rtl
+  Module        : hmac_reg_top
+  FileName      : ../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv
+  LineNumber    : 930
+  Statement     :     .qre    (),
+  ModPortName   : qre
+  -----------------------------------------------------------------------------
+  Tag           : W287b
+  Description   : Instance output port '[ModPortName]' is not connected
+  Violation     : Lint:164
+  Goal          : lint_rtl
+  Module        : hmac_reg_top
+  FileName      : ../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv
+  LineNumber    : 657
+  Statement     :     .q      (),
+  ModPortName   : q
+  -----------------------------------------------------------------------------
+  Tag           : W287b
+  Description   : Instance output port '[ModPortName]' is not connected
+  Violation     : Lint:28
+  Goal          : lint_rtl
+  Module        : tlul_adapter_sram
+  FileName      : ../src/lowrisc_tlul_adapter_sram_0.1/rtl/tlul_adapter_sram.sv
+  LineNumber    : 498
+  Statement     :     .rvalid_o(),
+  ModPortName   : rvalid_o
+  -----------------------------------------------------------------------------
+  Tag           : W287b
+  Description   : Instance output port '[ModPortName]' is not connected
+  Violation     : Lint:192
+  Goal          : lint_rtl
+  Module        : hmac_reg_top
+  FileName      : ../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv
+  LineNumber    : 848
+  Statement     :     .qs     ()
+  ModPortName   : qs
+  -----------------------------------------------------------------------------
+  Tag           : W287b
+  Description   : Instance output port '[ModPortName]' is not connected
+  Violation     : Lint:166
+  Goal          : lint_rtl
+  Module        : hmac_reg_top
+  FileName      : ../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv
+  LineNumber    : 676
+  Statement     :     .qre    (),
+  ModPortName   : qre
+  -----------------------------------------------------------------------------
+  Tag           : W287b
+  Description   : Instance output port '[ModPortName]' is not connected
+  Violation     : Lint:147
+  Goal          : lint_rtl
+  Module        : hmac_reg_top
+  FileName      : ../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv
+  LineNumber    : 570
+  Statement     :     .qs     ()
+  ModPortName   : qs
+  -----------------------------------------------------------------------------
+  Tag           : W287b
+  Description   : Instance output port '[ModPortName]' is not connected
+  Violation     : Lint:122
+  Goal          : lint_rtl
+  Module        : hmac_reg_top
+  FileName      : ../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv
+  LineNumber    : 379
+  Statement     :     .ds     (),
+  ModPortName   : ds
+  -----------------------------------------------------------------------------
+  Tag           : W287b
+  Description   : Instance output port '[ModPortName]' is not connected
+  Violation     : Lint:204
+  Goal          : lint_rtl
+  Module        : hmac_reg_top
+  FileName      : ../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv
+  LineNumber    : 899
+  Statement     :     .ds     (),
+  ModPortName   : ds
+  -----------------------------------------------------------------------------
+  Tag           : W287b
+  Description   : Instance output port '[ModPortName]' is not connected
+  Violation     : Lint:179
+  Goal          : lint_rtl
+  Module        : hmac_reg_top
+  FileName      : ../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv
+  LineNumber    : 763
+  Statement     :     .ds     (),
+  ModPortName   : ds
+  -----------------------------------------------------------------------------
+  Tag           : W287b
+  Description   : Instance output port '[ModPortName]' is not connected
+  Violation     : Lint:200
+  Goal          : lint_rtl
+  Module        : hmac_reg_top
+  FileName      : ../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv
+  LineNumber    : 882
+  Statement     :     .ds     (),
+  ModPortName   : ds
+
+  -----------------------------------------------------------------------------
+  W415a  (65 warnings/0 waived)
+  -----------------------------------------------------------------------------
+  Tag                 : W415a
+  Description         : Signal [Signal] is being assigned multiple times ( previous assignment at line [CulpritLineNumber] ) in same always block [Hierarchy: '[HIERARCHY]']
+  Violation           : Lint:85
+  Goal                : lint_rtl
+  Module              : hmac_reg_top
+  FileName            : ../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv
+  LineNumber          : 1062
+  Statement           :     addr_hit[15] = (reg_addr == HMAC_KEY_6_OFFSET);
+  Signal              : addr_hit[15]
+  CulpritLineNumber   : 1046
+  HIERARCHY           : :hmac:u_reg@hmac_reg_top
+  MultiLine           :     addr_hit[15] = (reg_addr == HMAC_KEY_6_OFFSET);(../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv:1062)
+  MultiLine           :     addr_hit = '0;(../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv:1046)
+  -----------------------------------------------------------------------------
+  Tag                 : W415a
+  Description         : Signal [Signal] is being assigned multiple times ( previous assignment at line [CulpritLineNumber] ) in same always block [Hierarchy: '[HIERARCHY]']
+  Violation           : Lint:73
+  Goal                : lint_rtl
+  Module              : hmac_reg_top
+  FileName            : ../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv
+  LineNumber          : 1050
+  Statement           :     addr_hit[ 3] = (reg_addr == HMAC_ALERT_TEST_OFFSET);
+  Signal              : addr_hit[3]
+  CulpritLineNumber   : 1046
+  HIERARCHY           : :hmac:u_reg@hmac_reg_top
+  MultiLine           :     addr_hit[ 3] = (reg_addr == HMAC_ALERT_TEST_OFFSET);(../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv:1050)
+  MultiLine           :     addr_hit = '0;(../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv:1046)
+  -----------------------------------------------------------------------------
+  Tag                 : W415a
+  Description         : Signal [Signal] is being assigned multiple times ( previous assignment at line [CulpritLineNumber] ) in same always block [Hierarchy: '[HIERARCHY]']
+  Violation           : Lint:254
+  Goal                : lint_rtl
+  Module              : prim_secded_inv_64_57_enc
+  FileName            : ../src/lowrisc_prim_secded_0.1/rtl/prim_secded_inv_64_57_enc.sv
+  LineNumber          : 20
+  Statement           :     data_o[63] = ^(data_o & 64'h01FBDDA769A46910);
+  Signal              : data_o[63]
+  CulpritLineNumber   : 13
+  HIERARCHY           : :hmac:u_reg@hmac_reg_top:u_rsp_intg_gen@tlul_rsp_intg_gen:\gen_rsp_intg.u_rsp_gen @prim_secded_inv_64_57_enc:p_encode
+  MultiLine           :     data_o[63] = ^(data_o & 64'h01FBDDA769A46910);(../src/lowrisc_prim_secded_0.1/rtl/prim_secded_inv_64_57_enc.sv:20)
+  MultiLine           :     data_o = 64'(data_i);(../src/lowrisc_prim_secded_0.1/rtl/prim_secded_inv_64_57_enc.sv:13)
+  -----------------------------------------------------------------------------
+  Tag                 : W415a
+  Description         : Signal [Signal] is being assigned multiple times ( previous assignment at line [CulpritLineNumber] ) in same always block [Hierarchy: '[HIERARCHY]']
+  Violation           : Lint:87
+  Goal                : lint_rtl
+  Module              : hmac_reg_top
+  FileName            : ../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv
+  LineNumber          : 1064
+  Statement           :     addr_hit[17] = (reg_addr == HMAC_DIGEST_0_OFFSET);
+  Signal              : addr_hit[17]
+  CulpritLineNumber   : 1046
+  HIERARCHY           : :hmac:u_reg@hmac_reg_top
+  MultiLine           :     addr_hit[17] = (reg_addr == HMAC_DIGEST_0_OFFSET);(../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv:1064)
+  MultiLine           :     addr_hit = '0;(../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv:1046)
+  -----------------------------------------------------------------------------
+  Tag                 : W415a
+  Description         : Signal [Signal] is being assigned multiple times ( previous assignment at line [CulpritLineNumber] ) in same always block [Hierarchy: '[HIERARCHY]']
+  Violation           : Lint:257
+  Goal                : lint_rtl
+  Module              : tlul_socket_1n
+  FileName            : ../src/lowrisc_tlul_socket_1n_0.1/rtl/tlul_socket_1n.sv
+  LineNumber          : 183
+  Statement           :     if (hold_all_requests) hfifo_reqready = 1'b0;
+  Signal              : hfifo_reqready
+  CulpritLineNumber   : 181
+  HIERARCHY           : :hmac:u_reg@hmac_reg_top:u_socket@tlul_socket_1n
+  MultiLine           :     if (hold_all_requests) hfifo_reqready = 1'b0;(../src/lowrisc_tlul_socket_1n_0.1/rtl/tlul_socket_1n.sv:183)
+  MultiLine           :       if (dev_select_t == NWD'(idx)) hfifo_reqready = tl_u_i[idx].a_ready;(../src/lowrisc_tlul_socket_1n_0.1/rtl/tlul_socket_1n.sv:181)
+  -----------------------------------------------------------------------------
+  Tag                 : W415a
+  Description         : Signal [Signal] is being assigned multiple times ( previous assignment at line [CulpritLineNumber] ) in same always block [Hierarchy: '[HIERARCHY]']
+  Violation           : Lint:99
+  Goal                : lint_rtl
+  Module              : hmac_reg_top
+  FileName            : ../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv
+  LineNumber          : 1192
+  Statement           :     reg_we_check[2] = intr_test_we;
+  Signal              : reg_we_check[2]
+  CulpritLineNumber   : 1189
+  HIERARCHY           : :hmac:u_reg@hmac_reg_top
+  MultiLine           :     reg_we_check[2] = intr_test_we;(../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv:1192)
+  MultiLine           :     reg_we_check = '0;(../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv:1189)
+  -----------------------------------------------------------------------------
+  Tag                 : W415a
+  Description         : Signal [Signal] is being assigned multiple times ( previous assignment at line [CulpritLineNumber] ) in same always block [Hierarchy: '[HIERARCHY]']
+  Violation           : Lint:77
+  Goal                : lint_rtl
+  Module              : hmac_reg_top
+  FileName            : ../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv
+  LineNumber          : 1054
+  Statement           :     addr_hit[ 7] = (reg_addr == HMAC_ERR_CODE_OFFSET);
+  Signal              : addr_hit[7]
+  CulpritLineNumber   : 1046
+  HIERARCHY           : :hmac:u_reg@hmac_reg_top
+  MultiLine           :     addr_hit[ 7] = (reg_addr == HMAC_ERR_CODE_OFFSET);(../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv:1054)
+  MultiLine           :     addr_hit = '0;(../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv:1046)
+  -----------------------------------------------------------------------------
+  Tag                 : W415a
+  Description         : Signal [Signal] is being assigned multiple times ( previous assignment at line [CulpritLineNumber] ) in same always block [Hierarchy: '[HIERARCHY]']
+  Violation           : Lint:59
+  Goal                : lint_rtl
+  Module              : prim_secded_inv_39_32_enc
+  FileName            : ../src/lowrisc_prim_secded_0.1/rtl/prim_secded_inv_39_32_enc.sv
+  LineNumber          : 17
+  Statement           :     data_o[35] = ^(data_o & 39'h0031234ED1);
+  Signal              : data_o[35]
+  CulpritLineNumber   : 13
+  HIERARCHY           : :hmac:u_tlul_adapter@tlul_adapter_sram:u_tlul_data_integ_enc_instr@tlul_data_integ_enc:u_data_gen@prim_secded_inv_39_32_enc:p_encode
+  MultiLine           :     data_o[35] = ^(data_o & 39'h0031234ED1);(../src/lowrisc_prim_secded_0.1/rtl/prim_secded_inv_39_32_enc.sv:17)
+  MultiLine           :     data_o = 39'(data_i);(../src/lowrisc_prim_secded_0.1/rtl/prim_secded_inv_39_32_enc.sv:13)
+  -----------------------------------------------------------------------------
+  Tag                 : W415a
+  Description         : Signal [Signal] is being assigned multiple times ( previous assignment at line [CulpritLineNumber] ) in same always block [Hierarchy: '[HIERARCHY]']
+  Violation           : Lint:63
+  Goal                : lint_rtl
+  Module              : prim_secded_inv_39_32_enc
+  FileName            : ../src/lowrisc_prim_secded_0.1/rtl/prim_secded_inv_39_32_enc.sv
+  LineNumber          : 21
+  Statement           :     data_o ^= 39'h2A00000000;
+  Signal              : data_o
+  CulpritLineNumber   : 13
+  HIERARCHY           : :hmac:u_tlul_adapter@tlul_adapter_sram:u_tlul_data_integ_enc_instr@tlul_data_integ_enc:u_data_gen@prim_secded_inv_39_32_enc:p_encode
+  MultiLine           :     data_o ^= 39'h2A00000000;(../src/lowrisc_prim_secded_0.1/rtl/prim_secded_inv_39_32_enc.sv:21)
+  MultiLine           :     data_o = 39'(data_i);(../src/lowrisc_prim_secded_0.1/rtl/prim_secded_inv_39_32_enc.sv:13)
+  -----------------------------------------------------------------------------
+  Tag                 : W415a
+  Description         : Signal [Signal] is being assigned multiple times ( previous assignment at line [CulpritLineNumber] ) in same always block [Hierarchy: '[HIERARCHY]']
+  Violation           : Lint:284
+  Goal                : lint_rtl
+  Module              : prim_alert_sender
+  FileName            : ../src/lowrisc_prim_alert_0/rtl/prim_alert_sender.sv
+  LineNumber          : 257
+  Statement           :       alert_pd  = 1'b0;
+  Signal              : alert_pd
+  CulpritLineNumber   : 204
+  HIERARCHY           : :hmac:\gen_alert_tx[0].u_prim_alert_sender @prim_alert_sender:p_fsm
+  MultiLine           :       alert_pd  = 1'b0;(../src/lowrisc_prim_alert_0/rtl/prim_alert_sender.sv:257)
+  MultiLine           :           alert_pd = 1'b1;(../src/lowrisc_prim_alert_0/rtl/prim_alert_sender.sv:204)
+  -----------------------------------------------------------------------------
+  Tag                 : W415a
+  Description         : Signal [Signal] is being assigned multiple times ( previous assignment at line [CulpritLineNumber] ) in same always block [Hierarchy: '[HIERARCHY]']
+  Violation           : Lint:111
+  Goal                : lint_rtl
+  Module              : hmac_reg_top
+  FileName            : ../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv
+  LineNumber          : 1206
+  Statement           :     reg_we_check[16] = key_7_we;
+  Signal              : reg_we_check[16]
+  CulpritLineNumber   : 1189
+  HIERARCHY           : :hmac:u_reg@hmac_reg_top
+  MultiLine           :     reg_we_check[16] = key_7_we;(../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv:1206)
+  MultiLine           :     reg_we_check = '0;(../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv:1189)
+  -----------------------------------------------------------------------------
+  Tag                 : W415a
+  Description         : Signal [Signal] is being assigned multiple times ( previous assignment at line [CulpritLineNumber] ) in same always block [Hierarchy: '[HIERARCHY]']
+  Violation           : Lint:249
+  Goal                : lint_rtl
+  Module              : prim_secded_inv_64_57_enc
+  FileName            : ../src/lowrisc_prim_secded_0.1/rtl/prim_secded_inv_64_57_enc.sv
+  LineNumber          : 15
+  Statement           :     data_o[58] = ^(data_o & 64'h017C1FF801FF801F);
+  Signal              : data_o[58]
+  CulpritLineNumber   : 13
+  HIERARCHY           : :hmac:u_reg@hmac_reg_top:u_rsp_intg_gen@tlul_rsp_intg_gen:\gen_rsp_intg.u_rsp_gen @prim_secded_inv_64_57_enc:p_encode
+  MultiLine           :     data_o[58] = ^(data_o & 64'h017C1FF801FF801F);(../src/lowrisc_prim_secded_0.1/rtl/prim_secded_inv_64_57_enc.sv:15)
+  MultiLine           :     data_o = 64'(data_i);(../src/lowrisc_prim_secded_0.1/rtl/prim_secded_inv_64_57_enc.sv:13)
+  -----------------------------------------------------------------------------
+  Tag                 : W415a
+  Description         : Signal [Signal] is being assigned multiple times ( previous assignment at line [CulpritLineNumber] ) in same always block [Hierarchy: '[HIERARCHY]']
+  Violation           : Lint:61
+  Goal                : lint_rtl
+  Module              : prim_secded_inv_39_32_enc
+  FileName            : ../src/lowrisc_prim_secded_0.1/rtl/prim_secded_inv_39_32_enc.sv
+  LineNumber          : 19
+  Statement           :     data_o[37] = ^(data_o & 39'h002DCC624C);
+  Signal              : data_o[37]
+  CulpritLineNumber   : 13
+  HIERARCHY           : :hmac:u_tlul_adapter@tlul_adapter_sram:u_tlul_data_integ_enc_instr@tlul_data_integ_enc:u_data_gen@prim_secded_inv_39_32_enc:p_encode
+  MultiLine           :     data_o[37] = ^(data_o & 39'h002DCC624C);(../src/lowrisc_prim_secded_0.1/rtl/prim_secded_inv_39_32_enc.sv:19)
+  MultiLine           :     data_o = 39'(data_i);(../src/lowrisc_prim_secded_0.1/rtl/prim_secded_inv_39_32_enc.sv:13)
+  -----------------------------------------------------------------------------
+  Tag                 : W415a
+  Description         : Signal [Signal] is being assigned multiple times ( previous assignment at line [CulpritLineNumber] ) in same always block [Hierarchy: '[HIERARCHY]']
+  Violation           : Lint:76
+  Goal                : lint_rtl
+  Module              : hmac_reg_top
+  FileName            : ../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv
+  LineNumber          : 1053
+  Statement           :     addr_hit[ 6] = (reg_addr == HMAC_STATUS_OFFSET);
+  Signal              : addr_hit[6]
+  CulpritLineNumber   : 1046
+  HIERARCHY           : :hmac:u_reg@hmac_reg_top
+  MultiLine           :     addr_hit[ 6] = (reg_addr == HMAC_STATUS_OFFSET);(../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv:1053)
+  MultiLine           :     addr_hit = '0;(../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv:1046)
+  -----------------------------------------------------------------------------
+  Tag                 : W415a
+  Description         : Signal [Signal] is being assigned multiple times ( previous assignment at line [CulpritLineNumber] ) in same always block [Hierarchy: '[HIERARCHY]']
+  Violation           : Lint:81
+  Goal                : lint_rtl
+  Module              : hmac_reg_top
+  FileName            : ../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv
+  LineNumber          : 1058
+  Statement           :     addr_hit[11] = (reg_addr == HMAC_KEY_2_OFFSET);
+  Signal              : addr_hit[11]
+  CulpritLineNumber   : 1046
+  HIERARCHY           : :hmac:u_reg@hmac_reg_top
+  MultiLine           :     addr_hit[11] = (reg_addr == HMAC_KEY_2_OFFSET);(../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv:1058)
+  MultiLine           :     addr_hit = '0;(../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv:1046)
+  -----------------------------------------------------------------------------
+  Tag                 : W415a
+  Description         : Signal [Signal] is being assigned multiple times ( previous assignment at line [CulpritLineNumber] ) in same always block [Hierarchy: '[HIERARCHY]']
+  Violation           : Lint:74
+  Goal                : lint_rtl
+  Module              : hmac_reg_top
+  FileName            : ../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv
+  LineNumber          : 1051
+  Statement           :     addr_hit[ 4] = (reg_addr == HMAC_CFG_OFFSET);
+  Signal              : addr_hit[4]
+  CulpritLineNumber   : 1046
+  HIERARCHY           : :hmac:u_reg@hmac_reg_top
+  MultiLine           :     addr_hit[ 4] = (reg_addr == HMAC_CFG_OFFSET);(../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv:1051)
+  MultiLine           :     addr_hit = '0;(../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv:1046)
+  -----------------------------------------------------------------------------
+  Tag                 : W415a
+  Description         : Signal [Signal] is being assigned multiple times ( previous assignment at line [CulpritLineNumber] ) in same always block [Hierarchy: '[HIERARCHY]']
+  Violation           : Lint:84
+  Goal                : lint_rtl
+  Module              : hmac_reg_top
+  FileName            : ../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv
+  LineNumber          : 1061
+  Statement           :     addr_hit[14] = (reg_addr == HMAC_KEY_5_OFFSET);
+  Signal              : addr_hit[14]
+  CulpritLineNumber   : 1046
+  HIERARCHY           : :hmac:u_reg@hmac_reg_top
+  MultiLine           :     addr_hit[14] = (reg_addr == HMAC_KEY_5_OFFSET);(../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv:1061)
+  MultiLine           :     addr_hit = '0;(../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv:1046)
+  -----------------------------------------------------------------------------
+  Tag                 : W415a
+  Description         : Signal [Signal] is being assigned multiple times ( previous assignment at line [CulpritLineNumber] ) in same always block [Hierarchy: '[HIERARCHY]']
+  Violation           : Lint:52
+  Goal                : lint_rtl
+  Module              : tlul_rsp_intg_gen
+  FileName            : ../src/lowrisc_tlul_trans_intg_0.1/rtl/tlul_rsp_intg_gen.sv
+  LineNumber          : 49
+  Statement           :     tl_o.d_user.data_intg = data_intg;
+  Signal              : tl_o.d_user.data_intg
+  CulpritLineNumber   : 47
+  HIERARCHY           : :hmac:u_tlul_adapter@tlul_adapter_sram:u_rsp_gen@tlul_rsp_intg_gen
+  MultiLine           :     tl_o.d_user.data_intg = data_intg;(../src/lowrisc_tlul_trans_intg_0.1/rtl/tlul_rsp_intg_gen.sv:49)
+  MultiLine           :     tl_o = tl_i;(../src/lowrisc_tlul_trans_intg_0.1/rtl/tlul_rsp_intg_gen.sv:47)
+  -----------------------------------------------------------------------------
+  Tag                 : W415a
+  Description         : Signal [Signal] is being assigned multiple times ( previous assignment at line [CulpritLineNumber] ) in same always block [Hierarchy: '[HIERARCHY]']
+  Violation           : Lint:91
+  Goal                : lint_rtl
+  Module              : hmac_reg_top
+  FileName            : ../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv
+  LineNumber          : 1068
+  Statement           :     addr_hit[21] = (reg_addr == HMAC_DIGEST_4_OFFSET);
+  Signal              : addr_hit[21]
+  CulpritLineNumber   : 1046
+  HIERARCHY           : :hmac:u_reg@hmac_reg_top
+  MultiLine           :     addr_hit[21] = (reg_addr == HMAC_DIGEST_4_OFFSET);(../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv:1068)
+  MultiLine           :     addr_hit = '0;(../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv:1046)
+  -----------------------------------------------------------------------------
+  Tag                 : W415a
+  Description         : Signal [Signal] is being assigned multiple times ( previous assignment at line [CulpritLineNumber] ) in same always block [Hierarchy: '[HIERARCHY]']
+  Violation           : Lint:86
+  Goal                : lint_rtl
+  Module              : hmac_reg_top
+  FileName            : ../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv
+  LineNumber          : 1063
+  Statement           :     addr_hit[16] = (reg_addr == HMAC_KEY_7_OFFSET);
+  Signal              : addr_hit[16]
+  CulpritLineNumber   : 1046
+  HIERARCHY           : :hmac:u_reg@hmac_reg_top
+  MultiLine           :     addr_hit[16] = (reg_addr == HMAC_KEY_7_OFFSET);(../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv:1063)
+  MultiLine           :     addr_hit = '0;(../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv:1046)
+  -----------------------------------------------------------------------------
+  Tag                 : W415a
+  Description         : Signal [Signal] is being assigned multiple times ( previous assignment at line [CulpritLineNumber] ) in same always block [Hierarchy: '[HIERARCHY]']
+  Violation           : Lint:88
+  Goal                : lint_rtl
+  Module              : hmac_reg_top
+  FileName            : ../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv
+  LineNumber          : 1065
+  Statement           :     addr_hit[18] = (reg_addr == HMAC_DIGEST_1_OFFSET);
+  Signal              : addr_hit[18]
+  CulpritLineNumber   : 1046
+  HIERARCHY           : :hmac:u_reg@hmac_reg_top
+  MultiLine           :     addr_hit[18] = (reg_addr == HMAC_DIGEST_1_OFFSET);(../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv:1065)
+  MultiLine           :     addr_hit = '0;(../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv:1046)
+  -----------------------------------------------------------------------------
+  Tag                 : W415a
+  Description         : Signal [Signal] is being assigned multiple times ( previous assignment at line [CulpritLineNumber] ) in same always block [Hierarchy: '[HIERARCHY]']
+  Violation           : Lint:251
+  Goal                : lint_rtl
+  Module              : prim_secded_inv_64_57_enc
+  FileName            : ../src/lowrisc_prim_secded_0.1/rtl/prim_secded_inv_64_57_enc.sv
+  LineNumber          : 17
+  Statement           :     data_o[60] = ^(data_o & 64'h01DEEE3B8E388E22);
+  Signal              : data_o[60]
+  CulpritLineNumber   : 13
+  HIERARCHY           : :hmac:u_reg@hmac_reg_top:u_rsp_intg_gen@tlul_rsp_intg_gen:\gen_rsp_intg.u_rsp_gen @prim_secded_inv_64_57_enc:p_encode
+  MultiLine           :     data_o[60] = ^(data_o & 64'h01DEEE3B8E388E22);(../src/lowrisc_prim_secded_0.1/rtl/prim_secded_inv_64_57_enc.sv:17)
+  MultiLine           :     data_o = 64'(data_i);(../src/lowrisc_prim_secded_0.1/rtl/prim_secded_inv_64_57_enc.sv:13)
+  -----------------------------------------------------------------------------
+  Tag                 : W415a
+  Description         : Signal [Signal] is being assigned multiple times ( previous assignment at line [CulpritLineNumber] ) in same always block [Hierarchy: '[HIERARCHY]']
+  Violation           : Lint:250
+  Goal                : lint_rtl
+  Module              : prim_secded_inv_64_57_enc
+  FileName            : ../src/lowrisc_prim_secded_0.1/rtl/prim_secded_inv_64_57_enc.sv
+  LineNumber          : 16
+  Statement           :     data_o[59] = ^(data_o & 64'h01BDE1F87E0781E1);
+  Signal              : data_o[59]
+  CulpritLineNumber   : 13
+  HIERARCHY           : :hmac:u_reg@hmac_reg_top:u_rsp_intg_gen@tlul_rsp_intg_gen:\gen_rsp_intg.u_rsp_gen @prim_secded_inv_64_57_enc:p_encode
+  MultiLine           :     data_o[59] = ^(data_o & 64'h01BDE1F87E0781E1);(../src/lowrisc_prim_secded_0.1/rtl/prim_secded_inv_64_57_enc.sv:16)
+  MultiLine           :     data_o = 64'(data_i);(../src/lowrisc_prim_secded_0.1/rtl/prim_secded_inv_64_57_enc.sv:13)
+  -----------------------------------------------------------------------------
+  Tag                 : W415a
+  Description         : Signal [Signal] is being assigned multiple times ( previous assignment at line [CulpritLineNumber] ) in same always block [Hierarchy: '[HIERARCHY]']
+  Violation           : Lint:283
+  Goal                : lint_rtl
+  Module              : prim_alert_sender
+  FileName            : ../src/lowrisc_prim_alert_0/rtl/prim_alert_sender.sv
+  LineNumber          : 256
+  Statement           :       state_d   = Idle;
+  Signal              : state_d
+  CulpritLineNumber   : 203
+  HIERARCHY           : :hmac:\gen_alert_tx[0].u_prim_alert_sender @prim_alert_sender:p_fsm
+  MultiLine           :       state_d   = Idle;(../src/lowrisc_prim_alert_0/rtl/prim_alert_sender.sv:256)
+  MultiLine           :           state_d = (alert_trigger) ? AlertHsPhase1 : PingHsPhase1;(../src/lowrisc_prim_alert_0/rtl/prim_alert_sender.sv:203)
+  -----------------------------------------------------------------------------
+  Tag                 : W415a
+  Description         : Signal [Signal] is being assigned multiple times ( previous assignment at line [CulpritLineNumber] ) in same always block [Hierarchy: '[HIERARCHY]']
+  Violation           : Lint:97
+  Goal                : lint_rtl
+  Module              : hmac_reg_top
+  FileName            : ../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv
+  LineNumber          : 1190
+  Statement           :     reg_we_check[0] = intr_state_we;
+  Signal              : reg_we_check[0]
+  CulpritLineNumber   : 1189
+  HIERARCHY           : :hmac:u_reg@hmac_reg_top
+  MultiLine           :     reg_we_check[0] = intr_state_we;(../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv:1190)
+  MultiLine           :     reg_we_check = '0;(../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv:1189)
+  -----------------------------------------------------------------------------
+  Tag                 : W415a
+  Description         : Signal [Signal] is being assigned multiple times ( previous assignment at line [CulpritLineNumber] ) in same always block [Hierarchy: '[HIERARCHY]']
+  Violation           : Lint:255
+  Goal                : lint_rtl
+  Module              : prim_secded_inv_64_57_enc
+  FileName            : ../src/lowrisc_prim_secded_0.1/rtl/prim_secded_inv_64_57_enc.sv
+  LineNumber          : 21
+  Statement           :     data_o ^= 64'h5400000000000000;
+  Signal              : data_o
+  CulpritLineNumber   : 13
+  HIERARCHY           : :hmac:u_reg@hmac_reg_top:u_rsp_intg_gen@tlul_rsp_intg_gen:\gen_rsp_intg.u_rsp_gen @prim_secded_inv_64_57_enc:p_encode
+  MultiLine           :     data_o ^= 64'h5400000000000000;(../src/lowrisc_prim_secded_0.1/rtl/prim_secded_inv_64_57_enc.sv:21)
+  MultiLine           :     data_o = 64'(data_i);(../src/lowrisc_prim_secded_0.1/rtl/prim_secded_inv_64_57_enc.sv:13)
+  -----------------------------------------------------------------------------
+  Tag                 : W415a
+  Description         : Signal [Signal] is being assigned multiple times ( previous assignment at line [CulpritLineNumber] ) in same always block [Hierarchy: '[HIERARCHY]']
+  Violation           : Lint:58
+  Goal                : lint_rtl
+  Module              : prim_secded_inv_39_32_enc
+  FileName            : ../src/lowrisc_prim_secded_0.1/rtl/prim_secded_inv_39_32_enc.sv
+  LineNumber          : 16
+  Statement           :     data_o[34] = ^(data_o & 39'h00413D89AA);
+  Signal              : data_o[34]
+  CulpritLineNumber   : 13
+  HIERARCHY           : :hmac:u_tlul_adapter@tlul_adapter_sram:u_tlul_data_integ_enc_instr@tlul_data_integ_enc:u_data_gen@prim_secded_inv_39_32_enc:p_encode
+  MultiLine           :     data_o[34] = ^(data_o & 39'h00413D89AA);(../src/lowrisc_prim_secded_0.1/rtl/prim_secded_inv_39_32_enc.sv:16)
+  MultiLine           :     data_o = 39'(data_i);(../src/lowrisc_prim_secded_0.1/rtl/prim_secded_inv_39_32_enc.sv:13)
+  -----------------------------------------------------------------------------
+  Tag                 : W415a
+  Description         : Signal [Signal] is being assigned multiple times ( previous assignment at line [CulpritLineNumber] ) in same always block [Hierarchy: '[HIERARCHY]']
+  Violation           : Lint:102
+  Goal                : lint_rtl
+  Module              : hmac_reg_top
+  FileName            : ../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv
+  LineNumber          : 1195
+  Statement           :     reg_we_check[5] = cmd_we;
+  Signal              : reg_we_check[5]
+  CulpritLineNumber   : 1189
+  HIERARCHY           : :hmac:u_reg@hmac_reg_top
+  MultiLine           :     reg_we_check[5] = cmd_we;(../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv:1195)
+  MultiLine           :     reg_we_check = '0;(../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv:1189)
+  -----------------------------------------------------------------------------
+  Tag                 : W415a
+  Description         : Signal [Signal] is being assigned multiple times ( previous assignment at line [CulpritLineNumber] ) in same always block [Hierarchy: '[HIERARCHY]']
+  Violation           : Lint:106
+  Goal                : lint_rtl
+  Module              : hmac_reg_top
+  FileName            : ../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv
+  LineNumber          : 1201
+  Statement           :     reg_we_check[11] = key_2_we;
+  Signal              : reg_we_check[11]
+  CulpritLineNumber   : 1189
+  HIERARCHY           : :hmac:u_reg@hmac_reg_top
+  MultiLine           :     reg_we_check[11] = key_2_we;(../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv:1201)
+  MultiLine           :     reg_we_check = '0;(../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv:1189)
+  -----------------------------------------------------------------------------
+  Tag                 : W415a
+  Description         : Signal [Signal] is being assigned multiple times ( previous assignment at line [CulpritLineNumber] ) in same always block [Hierarchy: '[HIERARCHY]']
+  Violation           : Lint:107
+  Goal                : lint_rtl
+  Module              : hmac_reg_top
+  FileName            : ../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv
+  LineNumber          : 1202
+  Statement           :     reg_we_check[12] = key_3_we;
+  Signal              : reg_we_check[12]
+  CulpritLineNumber   : 1189
+  HIERARCHY           : :hmac:u_reg@hmac_reg_top
+  MultiLine           :     reg_we_check[12] = key_3_we;(../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv:1202)
+  MultiLine           :     reg_we_check = '0;(../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv:1189)
+  -----------------------------------------------------------------------------
+  Tag                 : W415a
+  Description         : Signal [Signal] is being assigned multiple times ( previous assignment at line [CulpritLineNumber] ) in same always block [Hierarchy: '[HIERARCHY]']
+  Violation           : Lint:82
+  Goal                : lint_rtl
+  Module              : hmac_reg_top
+  FileName            : ../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv
+  LineNumber          : 1059
+  Statement           :     addr_hit[12] = (reg_addr == HMAC_KEY_3_OFFSET);
+  Signal              : addr_hit[12]
+  CulpritLineNumber   : 1046
+  HIERARCHY           : :hmac:u_reg@hmac_reg_top
+  MultiLine           :     addr_hit[12] = (reg_addr == HMAC_KEY_3_OFFSET);(../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv:1059)
+  MultiLine           :     addr_hit = '0;(../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv:1046)
+  -----------------------------------------------------------------------------
+  Tag                 : W415a
+  Description         : Signal [Signal] is being assigned multiple times ( previous assignment at line [CulpritLineNumber] ) in same always block [Hierarchy: '[HIERARCHY]']
+  Violation           : Lint:95
+  Goal                : lint_rtl
+  Module              : hmac_reg_top
+  FileName            : ../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv
+  LineNumber          : 1072
+  Statement           :     addr_hit[25] = (reg_addr == HMAC_MSG_LENGTH_LOWER_OFFSET);
+  Signal              : addr_hit[25]
+  CulpritLineNumber   : 1046
+  HIERARCHY           : :hmac:u_reg@hmac_reg_top
+  MultiLine           :     addr_hit[25] = (reg_addr == HMAC_MSG_LENGTH_LOWER_OFFSET);(../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv:1072)
+  MultiLine           :     addr_hit = '0;(../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv:1046)
+  -----------------------------------------------------------------------------
+  Tag                 : W415a
+  Description         : Signal [Signal] is being assigned multiple times ( previous assignment at line [CulpritLineNumber] ) in same always block [Hierarchy: '[HIERARCHY]']
+  Violation           : Lint:103
+  Goal                : lint_rtl
+  Module              : hmac_reg_top
+  FileName            : ../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv
+  LineNumber          : 1198
+  Statement           :     reg_we_check[8] = wipe_secret_we;
+  Signal              : reg_we_check[8]
+  CulpritLineNumber   : 1189
+  HIERARCHY           : :hmac:u_reg@hmac_reg_top
+  MultiLine           :     reg_we_check[8] = wipe_secret_we;(../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv:1198)
+  MultiLine           :     reg_we_check = '0;(../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv:1189)
+  -----------------------------------------------------------------------------
+  Tag                 : W415a
+  Description         : Signal [Signal] is being assigned multiple times ( previous assignment at line [CulpritLineNumber] ) in same always block [Hierarchy: '[HIERARCHY]']
+  Violation           : Lint:101
+  Goal                : lint_rtl
+  Module              : hmac_reg_top
+  FileName            : ../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv
+  LineNumber          : 1194
+  Statement           :     reg_we_check[4] = cfg_we;
+  Signal              : reg_we_check[4]
+  CulpritLineNumber   : 1189
+  HIERARCHY           : :hmac:u_reg@hmac_reg_top
+  MultiLine           :     reg_we_check[4] = cfg_we;(../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv:1194)
+  MultiLine           :     reg_we_check = '0;(../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv:1189)
+  -----------------------------------------------------------------------------
+  Tag                 : W415a
+  Description         : Signal [Signal] is being assigned multiple times ( previous assignment at line [CulpritLineNumber] ) in same always block [Hierarchy: '[HIERARCHY]']
+  Violation           : Lint:51
+  Goal                : lint_rtl
+  Module              : tlul_rsp_intg_gen
+  FileName            : ../src/lowrisc_tlul_trans_intg_0.1/rtl/tlul_rsp_intg_gen.sv
+  LineNumber          : 48
+  Statement           :     tl_o.d_user.rsp_intg = rsp_intg;
+  Signal              : tl_o.d_user.rsp_intg
+  CulpritLineNumber   : 47
+  HIERARCHY           : :hmac:u_tlul_adapter@tlul_adapter_sram:u_rsp_gen@tlul_rsp_intg_gen
+  MultiLine           :     tl_o.d_user.rsp_intg = rsp_intg;(../src/lowrisc_tlul_trans_intg_0.1/rtl/tlul_rsp_intg_gen.sv:48)
+  MultiLine           :     tl_o = tl_i;(../src/lowrisc_tlul_trans_intg_0.1/rtl/tlul_rsp_intg_gen.sv:47)
+  -----------------------------------------------------------------------------
+  Tag                 : W415a
+  Description         : Signal [Signal] is being assigned multiple times ( previous assignment at line [CulpritLineNumber] ) in same always block [Hierarchy: '[HIERARCHY]']
+  Violation           : Lint:252
+  Goal                : lint_rtl
+  Module              : prim_secded_inv_64_57_enc
+  FileName            : ../src/lowrisc_prim_secded_0.1/rtl/prim_secded_inv_64_57_enc.sv
+  LineNumber          : 18
+  Statement           :     data_o[61] = ^(data_o & 64'h01EF76CDB2C93244);
+  Signal              : data_o[61]
+  CulpritLineNumber   : 13
+  HIERARCHY           : :hmac:u_reg@hmac_reg_top:u_rsp_intg_gen@tlul_rsp_intg_gen:\gen_rsp_intg.u_rsp_gen @prim_secded_inv_64_57_enc:p_encode
+  MultiLine           :     data_o[61] = ^(data_o & 64'h01EF76CDB2C93244);(../src/lowrisc_prim_secded_0.1/rtl/prim_secded_inv_64_57_enc.sv:18)
+  MultiLine           :     data_o = 64'(data_i);(../src/lowrisc_prim_secded_0.1/rtl/prim_secded_inv_64_57_enc.sv:13)
+  -----------------------------------------------------------------------------
+  Tag                 : W415a
+  Description         : Signal [Signal] is being assigned multiple times ( previous assignment at line [CulpritLineNumber] ) in same always block [Hierarchy: '[HIERARCHY]']
+  Violation           : Lint:104
+  Goal                : lint_rtl
+  Module              : hmac_reg_top
+  FileName            : ../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv
+  LineNumber          : 1199
+  Statement           :     reg_we_check[9] = key_0_we;
+  Signal              : reg_we_check[9]
+  CulpritLineNumber   : 1189
+  HIERARCHY           : :hmac:u_reg@hmac_reg_top
+  MultiLine           :     reg_we_check[9] = key_0_we;(../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv:1199)
+  MultiLine           :     reg_we_check = '0;(../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv:1189)
+  -----------------------------------------------------------------------------
+  Tag                 : W415a
+  Description         : Signal [Signal] is being assigned multiple times ( previous assignment at line [CulpritLineNumber] ) in same always block [Hierarchy: '[HIERARCHY]']
+  Violation           : Lint:79
+  Goal                : lint_rtl
+  Module              : hmac_reg_top
+  FileName            : ../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv
+  LineNumber          : 1056
+  Statement           :     addr_hit[ 9] = (reg_addr == HMAC_KEY_0_OFFSET);
+  Signal              : addr_hit[9]
+  CulpritLineNumber   : 1046
+  HIERARCHY           : :hmac:u_reg@hmac_reg_top
+  MultiLine           :     addr_hit[ 9] = (reg_addr == HMAC_KEY_0_OFFSET);(../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv:1056)
+  MultiLine           :     addr_hit = '0;(../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv:1046)
+  -----------------------------------------------------------------------------
+  Tag                 : W415a
+  Description         : Signal [Signal] is being assigned multiple times ( previous assignment at line [CulpritLineNumber] ) in same always block [Hierarchy: '[HIERARCHY]']
+  Violation           : Lint:108
+  Goal                : lint_rtl
+  Module              : hmac_reg_top
+  FileName            : ../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv
+  LineNumber          : 1203
+  Statement           :     reg_we_check[13] = key_4_we;
+  Signal              : reg_we_check[13]
+  CulpritLineNumber   : 1189
+  HIERARCHY           : :hmac:u_reg@hmac_reg_top
+  MultiLine           :     reg_we_check[13] = key_4_we;(../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv:1203)
+  MultiLine           :     reg_we_check = '0;(../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv:1189)
+  -----------------------------------------------------------------------------
+  Tag                 : W415a
+  Description         : Signal [Signal] is being assigned multiple times ( previous assignment at line [CulpritLineNumber] ) in same always block [Hierarchy: '[HIERARCHY]']
+  Violation           : Lint:90
+  Goal                : lint_rtl
+  Module              : hmac_reg_top
+  FileName            : ../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv
+  LineNumber          : 1067
+  Statement           :     addr_hit[20] = (reg_addr == HMAC_DIGEST_3_OFFSET);
+  Signal              : addr_hit[20]
+  CulpritLineNumber   : 1046
+  HIERARCHY           : :hmac:u_reg@hmac_reg_top
+  MultiLine           :     addr_hit[20] = (reg_addr == HMAC_DIGEST_3_OFFSET);(../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv:1067)
+  MultiLine           :     addr_hit = '0;(../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv:1046)
+  -----------------------------------------------------------------------------
+  Tag                 : W415a
+  Description         : Signal [Signal] is being assigned multiple times ( previous assignment at line [CulpritLineNumber] ) in same always block [Hierarchy: '[HIERARCHY]']
+  Violation           : Lint:242
+  Goal                : lint_rtl
+  Module              : tlul_rsp_intg_gen
+  FileName            : ../src/lowrisc_tlul_trans_intg_0.1/rtl/tlul_rsp_intg_gen.sv
+  LineNumber          : 48
+  Statement           :     tl_o.d_user.rsp_intg = rsp_intg;
+  Signal              : tl_o.d_user.rsp_intg
+  CulpritLineNumber   : 47
+  HIERARCHY           : :hmac:u_reg@hmac_reg_top:u_rsp_intg_gen@tlul_rsp_intg_gen
+  MultiLine           :     tl_o.d_user.rsp_intg = rsp_intg;(../src/lowrisc_tlul_trans_intg_0.1/rtl/tlul_rsp_intg_gen.sv:48)
+  MultiLine           :     tl_o = tl_i;(../src/lowrisc_tlul_trans_intg_0.1/rtl/tlul_rsp_intg_gen.sv:47)
+  -----------------------------------------------------------------------------
+  Tag                 : W415a
+  Description         : Signal [Signal] is being assigned multiple times ( previous assignment at line [CulpritLineNumber] ) in same always block [Hierarchy: '[HIERARCHY]']
+  Violation           : Lint:109
+  Goal                : lint_rtl
+  Module              : hmac_reg_top
+  FileName            : ../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv
+  LineNumber          : 1204
+  Statement           :     reg_we_check[14] = key_5_we;
+  Signal              : reg_we_check[14]
+  CulpritLineNumber   : 1189
+  HIERARCHY           : :hmac:u_reg@hmac_reg_top
+  MultiLine           :     reg_we_check[14] = key_5_we;(../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv:1204)
+  MultiLine           :     reg_we_check = '0;(../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv:1189)
+  -----------------------------------------------------------------------------
+  Tag                 : W415a
+  Description         : Signal [Signal] is being assigned multiple times ( previous assignment at line [CulpritLineNumber] ) in same always block [Hierarchy: '[HIERARCHY]']
+  Violation           : Lint:243
+  Goal                : lint_rtl
+  Module              : tlul_rsp_intg_gen
+  FileName            : ../src/lowrisc_tlul_trans_intg_0.1/rtl/tlul_rsp_intg_gen.sv
+  LineNumber          : 49
+  Statement           :     tl_o.d_user.data_intg = data_intg;
+  Signal              : tl_o.d_user.data_intg
+  CulpritLineNumber   : 47
+  HIERARCHY           : :hmac:u_reg@hmac_reg_top:u_rsp_intg_gen@tlul_rsp_intg_gen
+  MultiLine           :     tl_o.d_user.data_intg = data_intg;(../src/lowrisc_tlul_trans_intg_0.1/rtl/tlul_rsp_intg_gen.sv:49)
+  MultiLine           :     tl_o = tl_i;(../src/lowrisc_tlul_trans_intg_0.1/rtl/tlul_rsp_intg_gen.sv:47)
+  -----------------------------------------------------------------------------
+  Tag                 : W415a
+  Description         : Signal [Signal] is being assigned multiple times ( previous assignment at line [CulpritLineNumber] ) in same always block [Hierarchy: '[HIERARCHY]']
+  Violation           : Lint:75
+  Goal                : lint_rtl
+  Module              : hmac_reg_top
+  FileName            : ../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv
+  LineNumber          : 1052
+  Statement           :     addr_hit[ 5] = (reg_addr == HMAC_CMD_OFFSET);
+  Signal              : addr_hit[5]
+  CulpritLineNumber   : 1046
+  HIERARCHY           : :hmac:u_reg@hmac_reg_top
+  MultiLine           :     addr_hit[ 5] = (reg_addr == HMAC_CMD_OFFSET);(../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv:1052)
+  MultiLine           :     addr_hit = '0;(../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv:1046)
+  -----------------------------------------------------------------------------
+  Tag                 : W415a
+  Description         : Signal [Signal] is being assigned multiple times ( previous assignment at line [CulpritLineNumber] ) in same always block [Hierarchy: '[HIERARCHY]']
+  Violation           : Lint:60
+  Goal                : lint_rtl
+  Module              : prim_secded_inv_39_32_enc
+  FileName            : ../src/lowrisc_prim_secded_0.1/rtl/prim_secded_inv_39_32_enc.sv
+  LineNumber          : 18
+  Statement           :     data_o[36] = ^(data_o & 39'h00C2C1323B);
+  Signal              : data_o[36]
+  CulpritLineNumber   : 13
+  HIERARCHY           : :hmac:u_tlul_adapter@tlul_adapter_sram:u_tlul_data_integ_enc_instr@tlul_data_integ_enc:u_data_gen@prim_secded_inv_39_32_enc:p_encode
+  MultiLine           :     data_o[36] = ^(data_o & 39'h00C2C1323B);(../src/lowrisc_prim_secded_0.1/rtl/prim_secded_inv_39_32_enc.sv:18)
+  MultiLine           :     data_o = 39'(data_i);(../src/lowrisc_prim_secded_0.1/rtl/prim_secded_inv_39_32_enc.sv:13)
+  -----------------------------------------------------------------------------
+  Tag                 : W415a
+  Description         : Signal [Signal] is being assigned multiple times ( previous assignment at line [CulpritLineNumber] ) in same always block [Hierarchy: '[HIERARCHY]']
+  Violation           : Lint:110
+  Goal                : lint_rtl
+  Module              : hmac_reg_top
+  FileName            : ../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv
+  LineNumber          : 1205
+  Statement           :     reg_we_check[15] = key_6_we;
+  Signal              : reg_we_check[15]
+  CulpritLineNumber   : 1189
+  HIERARCHY           : :hmac:u_reg@hmac_reg_top
+  MultiLine           :     reg_we_check[15] = key_6_we;(../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv:1205)
+  MultiLine           :     reg_we_check = '0;(../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv:1189)
+  -----------------------------------------------------------------------------
+  Tag                 : W415a
+  Description         : Signal [Signal] is being assigned multiple times ( previous assignment at line [CulpritLineNumber] ) in same always block [Hierarchy: '[HIERARCHY]']
+  Violation           : Lint:248
+  Goal                : lint_rtl
+  Module              : prim_secded_inv_64_57_enc
+  FileName            : ../src/lowrisc_prim_secded_0.1/rtl/prim_secded_inv_64_57_enc.sv
+  LineNumber          : 14
+  Statement           :     data_o[57] = ^(data_o & 64'h0103FFF800007FFF);
+  Signal              : data_o[57]
+  CulpritLineNumber   : 13
+  HIERARCHY           : :hmac:u_reg@hmac_reg_top:u_rsp_intg_gen@tlul_rsp_intg_gen:\gen_rsp_intg.u_rsp_gen @prim_secded_inv_64_57_enc:p_encode
+  MultiLine           :     data_o[57] = ^(data_o & 64'h0103FFF800007FFF);(../src/lowrisc_prim_secded_0.1/rtl/prim_secded_inv_64_57_enc.sv:14)
+  MultiLine           :     data_o = 64'(data_i);(../src/lowrisc_prim_secded_0.1/rtl/prim_secded_inv_64_57_enc.sv:13)
+  -----------------------------------------------------------------------------
+  Tag                 : W415a
+  Description         : Signal [Signal] is being assigned multiple times ( previous assignment at line [CulpritLineNumber] ) in same always block [Hierarchy: '[HIERARCHY]']
+  Violation           : Lint:100
+  Goal                : lint_rtl
+  Module              : hmac_reg_top
+  FileName            : ../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv
+  LineNumber          : 1193
+  Statement           :     reg_we_check[3] = alert_test_we;
+  Signal              : reg_we_check[3]
+  CulpritLineNumber   : 1189
+  HIERARCHY           : :hmac:u_reg@hmac_reg_top
+  MultiLine           :     reg_we_check[3] = alert_test_we;(../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv:1193)
+  MultiLine           :     reg_we_check = '0;(../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv:1189)
+  -----------------------------------------------------------------------------
+  Tag                 : W415a
+  Description         : Signal [Signal] is being assigned multiple times ( previous assignment at line [CulpritLineNumber] ) in same always block [Hierarchy: '[HIERARCHY]']
+  Violation           : Lint:83
+  Goal                : lint_rtl
+  Module              : hmac_reg_top
+  FileName            : ../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv
+  LineNumber          : 1060
+  Statement           :     addr_hit[13] = (reg_addr == HMAC_KEY_4_OFFSET);
+  Signal              : addr_hit[13]
+  CulpritLineNumber   : 1046
+  HIERARCHY           : :hmac:u_reg@hmac_reg_top
+  MultiLine           :     addr_hit[13] = (reg_addr == HMAC_KEY_4_OFFSET);(../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv:1060)
+  MultiLine           :     addr_hit = '0;(../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv:1046)
+  -----------------------------------------------------------------------------
+  Tag                 : W415a
+  Description         : Signal [Signal] is being assigned multiple times ( previous assignment at line [CulpritLineNumber] ) in same always block [Hierarchy: '[HIERARCHY]']
+  Violation           : Lint:78
+  Goal                : lint_rtl
+  Module              : hmac_reg_top
+  FileName            : ../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv
+  LineNumber          : 1055
+  Statement           :     addr_hit[ 8] = (reg_addr == HMAC_WIPE_SECRET_OFFSET);
+  Signal              : addr_hit[8]
+  CulpritLineNumber   : 1046
+  HIERARCHY           : :hmac:u_reg@hmac_reg_top
+  MultiLine           :     addr_hit[ 8] = (reg_addr == HMAC_WIPE_SECRET_OFFSET);(../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv:1055)
+  MultiLine           :     addr_hit = '0;(../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv:1046)
+  -----------------------------------------------------------------------------
+  Tag                 : W415a
+  Description         : Signal [Signal] is being assigned multiple times ( previous assignment at line [CulpritLineNumber] ) in same always block [Hierarchy: '[HIERARCHY]']
+  Violation           : Lint:96
+  Goal                : lint_rtl
+  Module              : hmac_reg_top
+  FileName            : ../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv
+  LineNumber          : 1073
+  Statement           :     addr_hit[26] = (reg_addr == HMAC_MSG_LENGTH_UPPER_OFFSET);
+  Signal              : addr_hit[26]
+  CulpritLineNumber   : 1046
+  HIERARCHY           : :hmac:u_reg@hmac_reg_top
+  MultiLine           :     addr_hit[26] = (reg_addr == HMAC_MSG_LENGTH_UPPER_OFFSET);(../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv:1073)
+  MultiLine           :     addr_hit = '0;(../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv:1046)
+  -----------------------------------------------------------------------------
+  Tag                 : W415a
+  Description         : Signal [Signal] is being assigned multiple times ( previous assignment at line [CulpritLineNumber] ) in same always block [Hierarchy: '[HIERARCHY]']
+  Violation           : Lint:93
+  Goal                : lint_rtl
+  Module              : hmac_reg_top
+  FileName            : ../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv
+  LineNumber          : 1070
+  Statement           :     addr_hit[23] = (reg_addr == HMAC_DIGEST_6_OFFSET);
+  Signal              : addr_hit[23]
+  CulpritLineNumber   : 1046
+  HIERARCHY           : :hmac:u_reg@hmac_reg_top
+  MultiLine           :     addr_hit[23] = (reg_addr == HMAC_DIGEST_6_OFFSET);(../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv:1070)
+  MultiLine           :     addr_hit = '0;(../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv:1046)
+  -----------------------------------------------------------------------------
+  Tag                 : W415a
+  Description         : Signal [Signal] is being assigned multiple times ( previous assignment at line [CulpritLineNumber] ) in same always block [Hierarchy: '[HIERARCHY]']
+  Violation           : Lint:80
+  Goal                : lint_rtl
+  Module              : hmac_reg_top
+  FileName            : ../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv
+  LineNumber          : 1057
+  Statement           :     addr_hit[10] = (reg_addr == HMAC_KEY_1_OFFSET);
+  Signal              : addr_hit[10]
+  CulpritLineNumber   : 1046
+  HIERARCHY           : :hmac:u_reg@hmac_reg_top
+  MultiLine           :     addr_hit[10] = (reg_addr == HMAC_KEY_1_OFFSET);(../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv:1057)
+  MultiLine           :     addr_hit = '0;(../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv:1046)
+  -----------------------------------------------------------------------------
+  Tag                 : W415a
+  Description         : Signal [Signal] is being assigned multiple times ( previous assignment at line [CulpritLineNumber] ) in same always block [Hierarchy: '[HIERARCHY]']
+  Violation           : Lint:70
+  Goal                : lint_rtl
+  Module              : hmac_reg_top
+  FileName            : ../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv
+  LineNumber          : 1047
+  Statement           :     addr_hit[ 0] = (reg_addr == HMAC_INTR_STATE_OFFSET);
+  Signal              : addr_hit[0]
+  CulpritLineNumber   : 1046
+  HIERARCHY           : :hmac:u_reg@hmac_reg_top
+  MultiLine           :     addr_hit[ 0] = (reg_addr == HMAC_INTR_STATE_OFFSET);(../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv:1047)
+  MultiLine           :     addr_hit = '0;(../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv:1046)
+  -----------------------------------------------------------------------------
+  Tag                 : W415a
+  Description         : Signal [Signal] is being assigned multiple times ( previous assignment at line [CulpritLineNumber] ) in same always block [Hierarchy: '[HIERARCHY]']
+  Violation           : Lint:89
+  Goal                : lint_rtl
+  Module              : hmac_reg_top
+  FileName            : ../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv
+  LineNumber          : 1066
+  Statement           :     addr_hit[19] = (reg_addr == HMAC_DIGEST_2_OFFSET);
+  Signal              : addr_hit[19]
+  CulpritLineNumber   : 1046
+  HIERARCHY           : :hmac:u_reg@hmac_reg_top
+  MultiLine           :     addr_hit[19] = (reg_addr == HMAC_DIGEST_2_OFFSET);(../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv:1066)
+  MultiLine           :     addr_hit = '0;(../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv:1046)
+  -----------------------------------------------------------------------------
+  Tag                 : W415a
+  Description         : Signal [Signal] is being assigned multiple times ( previous assignment at line [CulpritLineNumber] ) in same always block [Hierarchy: '[HIERARCHY]']
+  Violation           : Lint:98
+  Goal                : lint_rtl
+  Module              : hmac_reg_top
+  FileName            : ../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv
+  LineNumber          : 1191
+  Statement           :     reg_we_check[1] = intr_enable_we;
+  Signal              : reg_we_check[1]
+  CulpritLineNumber   : 1189
+  HIERARCHY           : :hmac:u_reg@hmac_reg_top
+  MultiLine           :     reg_we_check[1] = intr_enable_we;(../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv:1191)
+  MultiLine           :     reg_we_check = '0;(../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv:1189)
+  -----------------------------------------------------------------------------
+  Tag                 : W415a
+  Description         : Signal [Signal] is being assigned multiple times ( previous assignment at line [CulpritLineNumber] ) in same always block [Hierarchy: '[HIERARCHY]']
+  Violation           : Lint:56
+  Goal                : lint_rtl
+  Module              : prim_secded_inv_39_32_enc
+  FileName            : ../src/lowrisc_prim_secded_0.1/rtl/prim_secded_inv_39_32_enc.sv
+  LineNumber          : 14
+  Statement           :     data_o[32] = ^(data_o & 39'h002606BD25);
+  Signal              : data_o[32]
+  CulpritLineNumber   : 13
+  HIERARCHY           : :hmac:u_tlul_adapter@tlul_adapter_sram:u_tlul_data_integ_enc_instr@tlul_data_integ_enc:u_data_gen@prim_secded_inv_39_32_enc:p_encode
+  MultiLine           :     data_o[32] = ^(data_o & 39'h002606BD25);(../src/lowrisc_prim_secded_0.1/rtl/prim_secded_inv_39_32_enc.sv:14)
+  MultiLine           :     data_o = 39'(data_i);(../src/lowrisc_prim_secded_0.1/rtl/prim_secded_inv_39_32_enc.sv:13)
+  -----------------------------------------------------------------------------
+  Tag                 : W415a
+  Description         : Signal [Signal] is being assigned multiple times ( previous assignment at line [CulpritLineNumber] ) in same always block [Hierarchy: '[HIERARCHY]']
+  Violation           : Lint:72
+  Goal                : lint_rtl
+  Module              : hmac_reg_top
+  FileName            : ../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv
+  LineNumber          : 1049
+  Statement           :     addr_hit[ 2] = (reg_addr == HMAC_INTR_TEST_OFFSET);
+  Signal              : addr_hit[2]
+  CulpritLineNumber   : 1046
+  HIERARCHY           : :hmac:u_reg@hmac_reg_top
+  MultiLine           :     addr_hit[ 2] = (reg_addr == HMAC_INTR_TEST_OFFSET);(../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv:1049)
+  MultiLine           :     addr_hit = '0;(../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv:1046)
+  -----------------------------------------------------------------------------
+  Tag                 : W415a
+  Description         : Signal [Signal] is being assigned multiple times ( previous assignment at line [CulpritLineNumber] ) in same always block [Hierarchy: '[HIERARCHY]']
+  Violation           : Lint:71
+  Goal                : lint_rtl
+  Module              : hmac_reg_top
+  FileName            : ../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv
+  LineNumber          : 1048
+  Statement           :     addr_hit[ 1] = (reg_addr == HMAC_INTR_ENABLE_OFFSET);
+  Signal              : addr_hit[1]
+  CulpritLineNumber   : 1046
+  HIERARCHY           : :hmac:u_reg@hmac_reg_top
+  MultiLine           :     addr_hit[ 1] = (reg_addr == HMAC_INTR_ENABLE_OFFSET);(../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv:1048)
+  MultiLine           :     addr_hit = '0;(../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv:1046)
+  -----------------------------------------------------------------------------
+  Tag                 : W415a
+  Description         : Signal [Signal] is being assigned multiple times ( previous assignment at line [CulpritLineNumber] ) in same always block [Hierarchy: '[HIERARCHY]']
+  Violation           : Lint:105
+  Goal                : lint_rtl
+  Module              : hmac_reg_top
+  FileName            : ../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv
+  LineNumber          : 1200
+  Statement           :     reg_we_check[10] = key_1_we;
+  Signal              : reg_we_check[10]
+  CulpritLineNumber   : 1189
+  HIERARCHY           : :hmac:u_reg@hmac_reg_top
+  MultiLine           :     reg_we_check[10] = key_1_we;(../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv:1200)
+  MultiLine           :     reg_we_check = '0;(../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv:1189)
+  -----------------------------------------------------------------------------
+  Tag                 : W415a
+  Description         : Signal [Signal] is being assigned multiple times ( previous assignment at line [CulpritLineNumber] ) in same always block [Hierarchy: '[HIERARCHY]']
+  Violation           : Lint:92
+  Goal                : lint_rtl
+  Module              : hmac_reg_top
+  FileName            : ../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv
+  LineNumber          : 1069
+  Statement           :     addr_hit[22] = (reg_addr == HMAC_DIGEST_5_OFFSET);
+  Signal              : addr_hit[22]
+  CulpritLineNumber   : 1046
+  HIERARCHY           : :hmac:u_reg@hmac_reg_top
+  MultiLine           :     addr_hit[22] = (reg_addr == HMAC_DIGEST_5_OFFSET);(../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv:1069)
+  MultiLine           :     addr_hit = '0;(../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv:1046)
+  -----------------------------------------------------------------------------
+  Tag                 : W415a
+  Description         : Signal [Signal] is being assigned multiple times ( previous assignment at line [CulpritLineNumber] ) in same always block [Hierarchy: '[HIERARCHY]']
+  Violation           : Lint:253
+  Goal                : lint_rtl
+  Module              : prim_secded_inv_64_57_enc
+  FileName            : ../src/lowrisc_prim_secded_0.1/rtl/prim_secded_inv_64_57_enc.sv
+  LineNumber          : 19
+  Statement           :     data_o[62] = ^(data_o & 64'h01F7BB56D5525488);
+  Signal              : data_o[62]
+  CulpritLineNumber   : 13
+  HIERARCHY           : :hmac:u_reg@hmac_reg_top:u_rsp_intg_gen@tlul_rsp_intg_gen:\gen_rsp_intg.u_rsp_gen @prim_secded_inv_64_57_enc:p_encode
+  MultiLine           :     data_o[62] = ^(data_o & 64'h01F7BB56D5525488);(../src/lowrisc_prim_secded_0.1/rtl/prim_secded_inv_64_57_enc.sv:19)
+  MultiLine           :     data_o = 64'(data_i);(../src/lowrisc_prim_secded_0.1/rtl/prim_secded_inv_64_57_enc.sv:13)
+  -----------------------------------------------------------------------------
+  Tag                 : W415a
+  Description         : Signal [Signal] is being assigned multiple times ( previous assignment at line [CulpritLineNumber] ) in same always block [Hierarchy: '[HIERARCHY]']
+  Violation           : Lint:57
+  Goal                : lint_rtl
+  Module              : prim_secded_inv_39_32_enc
+  FileName            : ../src/lowrisc_prim_secded_0.1/rtl/prim_secded_inv_39_32_enc.sv
+  LineNumber          : 15
+  Statement           :     data_o[33] = ^(data_o & 39'h00DEBA8050);
+  Signal              : data_o[33]
+  CulpritLineNumber   : 13
+  HIERARCHY           : :hmac:u_tlul_adapter@tlul_adapter_sram:u_tlul_data_integ_enc_instr@tlul_data_integ_enc:u_data_gen@prim_secded_inv_39_32_enc:p_encode
+  MultiLine           :     data_o[33] = ^(data_o & 39'h00DEBA8050);(../src/lowrisc_prim_secded_0.1/rtl/prim_secded_inv_39_32_enc.sv:15)
+  MultiLine           :     data_o = 39'(data_i);(../src/lowrisc_prim_secded_0.1/rtl/prim_secded_inv_39_32_enc.sv:13)
+  -----------------------------------------------------------------------------
+  Tag                 : W415a
+  Description         : Signal [Signal] is being assigned multiple times ( previous assignment at line [CulpritLineNumber] ) in same always block [Hierarchy: '[HIERARCHY]']
+  Violation           : Lint:62
+  Goal                : lint_rtl
+  Module              : prim_secded_inv_39_32_enc
+  FileName            : ../src/lowrisc_prim_secded_0.1/rtl/prim_secded_inv_39_32_enc.sv
+  LineNumber          : 20
+  Statement           :     data_o[38] = ^(data_o & 39'h0098505586);
+  Signal              : data_o[38]
+  CulpritLineNumber   : 13
+  HIERARCHY           : :hmac:u_tlul_adapter@tlul_adapter_sram:u_tlul_data_integ_enc_instr@tlul_data_integ_enc:u_data_gen@prim_secded_inv_39_32_enc:p_encode
+  MultiLine           :     data_o[38] = ^(data_o & 39'h0098505586);(../src/lowrisc_prim_secded_0.1/rtl/prim_secded_inv_39_32_enc.sv:20)
+  MultiLine           :     data_o = 39'(data_i);(../src/lowrisc_prim_secded_0.1/rtl/prim_secded_inv_39_32_enc.sv:13)
+  -----------------------------------------------------------------------------
+  Tag                 : W415a
+  Description         : Signal [Signal] is being assigned multiple times ( previous assignment at line [CulpritLineNumber] ) in same always block [Hierarchy: '[HIERARCHY]']
+  Violation           : Lint:94
+  Goal                : lint_rtl
+  Module              : hmac_reg_top
+  FileName            : ../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv
+  LineNumber          : 1071
+  Statement           :     addr_hit[24] = (reg_addr == HMAC_DIGEST_7_OFFSET);
+  Signal              : addr_hit[24]
+  CulpritLineNumber   : 1046
+  HIERARCHY           : :hmac:u_reg@hmac_reg_top
+  MultiLine           :     addr_hit[24] = (reg_addr == HMAC_DIGEST_7_OFFSET);(../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv:1071)
+  MultiLine           :     addr_hit = '0;(../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv:1046)
+
+  -----------------------------------------------------------------------------
+  W415a  (5 warnings/0 waived)
+  -----------------------------------------------------------------------------
+  Tag                 : W415a
+  Description         : Signal [Signal] is being assigned multiple times ( assignment within same for-loop ) in same always block [Hierarchy: '[HIERARCHY]']
+  Violation           : Lint:65
+  Goal                : lint_rtl
+  Module              : prim_packer
+  FileName            : ../src/lowrisc_prim_all_0.1/rtl/prim_packer.sv
+  LineNumber          : 159
+  Statement           :         lod_idx = IdxW'(unsigned'(i));
+  Signal              : lod_idx
+  HIERARCHY           : :hmac:u_packer@prim_packer
+  -----------------------------------------------------------------------------
+  Tag                 : W415a
+  Description         : Signal [Signal] is being assigned multiple times ( assignment within same for-loop ) in same always block [Hierarchy: '[HIERARCHY]']
+  Violation           : Lint:10
+  Goal                : lint_rtl
+  Module              : hmac
+  FileName            : ../src/lowrisc_ip_hmac_0.1/rtl/hmac.sv
+  LineNumber          : 334
+  Statement           :       wmask_ones = wmask_ones + msg_fifo_wmask[i];
+  Signal              : wmask_ones
+  HIERARCHY           : :hmac
+  -----------------------------------------------------------------------------
+  Tag                 : W415a
+  Description         : Signal [Signal] is being assigned multiple times ( assignment within same for-loop ) in same always block [Hierarchy: '[HIERARCHY]']
+  Violation           : Lint:256
+  Goal                : lint_rtl
+  Module              : tlul_socket_1n
+  FileName            : ../src/lowrisc_tlul_socket_1n_0.1/rtl/tlul_socket_1n.sv
+  LineNumber          : 181
+  Statement           :       if (dev_select_t == NWD'(idx)) hfifo_reqready = tl_u_i[idx].a_ready;
+  Signal              : hfifo_reqready
+  HIERARCHY           : :hmac:u_reg@hmac_reg_top:u_socket@tlul_socket_1n
+  -----------------------------------------------------------------------------
+  Tag                 : W415a
+  Description         : Signal [Signal] is being assigned multiple times ( assignment within same for-loop ) in same always block [Hierarchy: '[HIERARCHY]']
+  Violation           : Lint:11
+  Goal                : lint_rtl
+  Module              : hmac
+  FileName            : ../src/lowrisc_ip_hmac_0.1/rtl/hmac.sv
+  LineNumber          : 506
+  Statement           :           update_seckey_inprocess = update_seckey_inprocess | 1'b1;
+  Signal              : update_seckey_inprocess
+  HIERARCHY           : :hmac
+  -----------------------------------------------------------------------------
+  Tag                 : W415a
+  Description         : Signal [Signal] is being assigned multiple times ( assignment within same for-loop ) in same always block [Hierarchy: '[HIERARCHY]']
+  Violation           : Lint:64
+  Goal                : lint_rtl
+  Module              : prim_packer
+  FileName            : ../src/lowrisc_prim_all_0.1/rtl/prim_packer.sv
+  LineNumber          : 67
+  Statement           :       inmask_ones = inmask_ones + OnesCntW'(mask_i[i]);
+  Signal              : inmask_ones
+  HIERARCHY           : :hmac:u_packer@prim_packer
+
+  -----------------------------------------------------------------------------
+  W481a  (1 warning/0 waived)
+  -----------------------------------------------------------------------------
+  Tag           : W481a
+  Description   : Possibly unsynthesizable loop: step variable '[VariableName]' is not used in condition
+  Violation     : Lint:9
+  Goal          : lint_rtl
+  Module        : hmac
+  FileName      : ../src/lowrisc_prim_util_0.1/rtl/prim_util_pkg.sv
+  LineNumber    : 34
+  Statement     :     for (result = 0; v > 0; result++) begin
+  VariableName  : result
+
+  -----------------------------------------------------------------------------
+  W486  (1 warning/0 waived)
+  -----------------------------------------------------------------------------
+  Tag           : W486
+  Description   : Rhs width '[RHS_Size]' with shift (Expr: '[RHSExpr]') is more than lhs width '[LHS_Size]' (Expr: '[LHSExpr]'), this may cause overflow [Hierarchy: '[HIERARCHY]']
+  Violation     : Lint:40
+  Goal          : lint_rtl
+  Module        : tlul_err
+  FileName      : ../src/lowrisc_tlul_common_0.1/rtl/tlul_err.sv
+  LineNumber    : 53
+  Statement     :   assign mask = (1 << tl_i.a_address[SubAW-1:0]);
+  RHS_Size      : 32
+  RHSExpr       : (1 << tl_i.a_address[(SubAW - 1):0] )
+  LHS_Size      : 4
+  LHSExpr       : mask
+  HIERARCHY     : :hmac:u_tlul_adapter@tlul_adapter_sram:u_err@tlul_err
+
+  -----------------------------------------------------------------------------
+  W528  (34 warnings/0 waived)
+  -----------------------------------------------------------------------------
+  Tag           : W528
+  Description   : Variable '[VariableName]'[ExprSize] set but not read.[Hierarchy: '[HIERARCHY]']
+  Violation     : Lint:20
+  Goal          : lint_rtl
+  Module        : hmac
+  FileName      : ../src/lowrisc_ip_hmac_0.1/rtl/hmac.sv
+  LineNumber    : 601
+  Statement     :     if (!rst_ni)               in_process <= 1'b0;
+  VariableName  : in_process
+  ExprSize      : 
+  HIERARCHY     : :hmac
+  -----------------------------------------------------------------------------
+  Tag           : W528
+  Description   : Variable '[VariableName]'[ExprSize] set but not read.[Hierarchy: '[HIERARCHY]']
+  Violation     : Lint:232
+  Goal          : lint_rtl
+  Module        : hmac_reg_top
+  FileName      : ../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv
+  LineNumber    : 1362
+  Statement     :   assign unused_wdata = ^reg_wdata;
+  VariableName  : unused_wdata
+  ExprSize      : 
+  HIERARCHY     : :hmac:u_reg@hmac_reg_top
+  -----------------------------------------------------------------------------
+  Tag           : W528
+  Description   : Variable '[VariableName]'[ExprSize] set but not read.[Hierarchy: '[HIERARCHY]']
+  Violation     : Lint:23
+  Goal          : lint_rtl
+  Module        : hmac
+  FileName      : ../src/lowrisc_ip_hmac_0.1/rtl/hmac.sv
+  LineNumber    : 551
+  Statement     :   assign unused_wmask = ^reg_fifo_wmask;
+  VariableName  : unused_wmask
+  ExprSize      : 
+  HIERARCHY     : :hmac
+  -----------------------------------------------------------------------------
+  Tag           : W528
+  Description   : Variable '[VariableName]'[ExprSize] set but not read.[Hierarchy: '[HIERARCHY]']
+  Violation     : Lint:53
+  Goal          : lint_rtl
+  Module        : tlul_rsp_intg_gen
+  FileName      : ../src/lowrisc_tlul_trans_intg_0.1/rtl/tlul_rsp_intg_gen.sv
+  LineNumber    : 53
+  Statement     :   assign unused_tl = ^tl_i;
+  VariableName  : unused_tl
+  ExprSize      : 
+  HIERARCHY     : :hmac:u_tlul_adapter@tlul_adapter_sram:u_rsp_gen@tlul_rsp_intg_gen
+  -----------------------------------------------------------------------------
+  Tag           : W528
+  Description   : Variable '[VariableName]'[ExprSize] set but not read.[Hierarchy: '[HIERARCHY]']
+  Violation     : Lint:280
+  Goal          : lint_rtl
+  Module        : prim_subreg_arb
+  FileName      : ../src/lowrisc_prim_subreg_0/rtl/prim_subreg_arb.sv
+  LineNumber    : 43
+  Statement     :     assign unused_we = we;
+  VariableName  : unused_we
+  ExprSize      : 
+  HIERARCHY     : :hmac:u_reg@hmac_reg_top:u_err_code@prim_subreg:wr_en_data_arb@prim_subreg_arb
+  -----------------------------------------------------------------------------
+  Tag           : W528
+  Description   : Variable '[VariableName]'[ExprSize] set but not read.[Hierarchy: '[HIERARCHY]']
+  Violation     : Lint:278
+  Goal          : lint_rtl
+  Module        : tlul_adapter_reg
+  FileName      : ../src/lowrisc_tlul_headers_0.1/rtl/tlul_pkg.sv
+  LineNumber    : 142
+  Statement     :     unused_user = |user;
+  VariableName  : unused_user
+  ExprSize      : 
+  HIERARCHY     : :hmac:u_reg@hmac_reg_top:u_reg_if@tlul_adapter_reg
+  -----------------------------------------------------------------------------
+  Tag           : W528
+  Description   : Variable '[VariableName]'[ExprSize] set but not read.[Hierarchy: '[HIERARCHY]']
+  Violation     : Lint:265
+  Goal          : lint_rtl
+  Module        : tlul_socket_1n
+  FileName      : ../src/lowrisc_tlul_headers_0.1/rtl/tlul_pkg.sv
+  LineNumber    : 177
+  Statement     :     {cmd_intg, unused_cmd_payload} =
+  VariableName  : unused_cmd_payload[56:0]
+  ExprSize      : 
+  HIERARCHY     : :hmac:u_reg@hmac_reg_top:u_socket@tlul_socket_1n
+  -----------------------------------------------------------------------------
+  Tag           : W528
+  Description   : Variable '[VariableName]'[ExprSize] set but not read.[Hierarchy: '[HIERARCHY]']
+  Violation     : Lint:38
+  Goal          : lint_rtl
+  Module        : tlul_adapter_sram
+  FileName      : ../src/lowrisc_tlul_adapter_sram_0.1/rtl/tlul_adapter_sram.sv
+  LineNumber    : 282
+  Statement     :     .data_intg_o({error_data_integ, unused_data})
+  VariableName  : unused_data[31:0]
+  ExprSize      : 
+  HIERARCHY     : :hmac:u_tlul_adapter@tlul_adapter_sram
+  -----------------------------------------------------------------------------
+  Tag           : W528
+  Description   : Variable '[VariableName]'[ExprSize] set but not read.[Hierarchy: '[HIERARCHY]']
+  Violation     : Lint:262
+  Goal          : lint_rtl
+  Module        : tlul_socket_1n
+  FileName      : ../src/lowrisc_tlul_socket_1n_0.1/rtl/tlul_socket_1n.sv
+  LineNumber    : 250
+  Statement     :     assign unused_sig = ^tl_u_o[N];
+  VariableName  : unused_sig
+  ExprSize      : 
+  HIERARCHY     : :hmac:u_reg@hmac_reg_top:u_socket@tlul_socket_1n
+  -----------------------------------------------------------------------------
+  Tag           : W528
+  Description   : Variable '[VariableName]'[ExprSize] set but not read.[Hierarchy: '[HIERARCHY]']
+  Violation     : Lint:246
+  Goal          : lint_rtl
+  Module        : tlul_rsp_intg_gen
+  FileName      : ../src/lowrisc_tlul_trans_intg_0.1/rtl/tlul_rsp_intg_gen.sv
+  LineNumber    : 29
+  Statement     :       .data_o({rsp_intg, unused_payload})
+  VariableName  : unused_payload[56:0]
+  ExprSize      : 
+  HIERARCHY     : :hmac:u_reg@hmac_reg_top:u_rsp_intg_gen@tlul_rsp_intg_gen
+  -----------------------------------------------------------------------------
+  Tag           : W528
+  Description   : Variable '[VariableName]'[ExprSize] set but not read.[Hierarchy: '[HIERARCHY]']
+  Violation     : Lint:245
+  Goal          : lint_rtl
+  Module        : tlul_rsp_intg_gen
+  FileName      : ../src/lowrisc_tlul_trans_intg_0.1/rtl/tlul_rsp_intg_gen.sv
+  LineNumber    : 53
+  Statement     :   assign unused_tl = ^tl_i;
+  VariableName  : unused_tl
+  ExprSize      : 
+  HIERARCHY     : :hmac:u_reg@hmac_reg_top:u_rsp_intg_gen@tlul_rsp_intg_gen
+  -----------------------------------------------------------------------------
+  Tag           : W528
+  Description   : Variable '[VariableName]'[ExprSize] set but not read.[Hierarchy: '[HIERARCHY]']
+  Violation     : Lint:292
+  Goal          : lint_rtl
+  Module        : prim_flop_2sync
+  FileName      : ../src/lowrisc_prim_flop_2sync_0/rtl/prim_flop_2sync.sv
+  LineNumber    : 37
+  Statement     :   assign unused_sig = EnablePrimCdcRand;
+  VariableName  : unused_sig
+  ExprSize      : 
+  HIERARCHY     : :hmac:\gen_alert_tx[0].u_prim_alert_sender @prim_alert_sender:u_decode_ping@prim_diff_decode:\gen_async.i_sync_n @prim_flop_2sync
+  -----------------------------------------------------------------------------
+  Tag           : W528
+  Description   : Variable '[VariableName]'[ExprSize] set but not read.[Hierarchy: '[HIERARCHY]']
+  Violation     : Lint:282
+  Goal          : lint_rtl
+  Module        : prim_subreg_arb
+  FileName      : ../src/lowrisc_prim_subreg_0/rtl/prim_subreg_arb.sv
+  LineNumber    : 45
+  Statement     :     assign unused_q  = q;
+  VariableName  : unused_q[31:0]
+  ExprSize      : 
+  HIERARCHY     : :hmac:u_reg@hmac_reg_top:u_err_code@prim_subreg:wr_en_data_arb@prim_subreg_arb
+  -----------------------------------------------------------------------------
+  Tag           : W528
+  Description   : Variable '[VariableName]'[ExprSize] set but not read.[Hierarchy: '[HIERARCHY]']
+  Violation     : Lint:24
+  Goal          : lint_rtl
+  Module        : hmac
+  FileName      : ../src/lowrisc_ip_hmac_0.1/rtl/hmac.sv
+  LineNumber    : 144
+  Statement     :   assign unused_cfg_qe = {cfg_reg.sha_en.qe,      cfg_reg.hmac_en.qe,
+  VariableName  : unused_cfg_qe[3:0]
+  ExprSize      : 
+  HIERARCHY     : :hmac
+  -----------------------------------------------------------------------------
+  Tag           : W528
+  Description   : Variable '[VariableName]'[ExprSize] set but not read.[Hierarchy: '[HIERARCHY]']
+  Violation     : Lint:274
+  Goal          : lint_rtl
+  Module        : prim_fifo_sync
+  FileName      : ../src/lowrisc_prim_fifo_0/rtl/prim_fifo_sync.sv
+  LineNumber    : 53
+  Statement     :     assign unused_clr = clr_i;
+  VariableName  : unused_clr
+  ExprSize      : 
+  HIERARCHY     : :hmac:u_reg@hmac_reg_top:u_socket@tlul_socket_1n:fifo_h@tlul_fifo_sync:reqfifo@prim_fifo_sync
+  -----------------------------------------------------------------------------
+  Tag           : W528
+  Description   : Variable '[VariableName]'[ExprSize] set but not read.[Hierarchy: '[HIERARCHY]']
+  Violation     : Lint:231
+  Goal          : lint_rtl
+  Module        : hmac_reg_top
+  FileName      : ../src/lowrisc_ip_hmac_0.1/rtl/hmac_reg_top.sv
+  LineNumber    : 1363
+  Statement     :   assign unused_be = ^reg_be;
+  VariableName  : unused_be
+  ExprSize      : 
+  HIERARCHY     : :hmac:u_reg@hmac_reg_top
+  -----------------------------------------------------------------------------
+  Tag           : W528
+  Description   : Variable '[VariableName]'[ExprSize] set but not read.[Hierarchy: '[HIERARCHY]']
+  Violation     : Lint:39
+  Goal          : lint_rtl
+  Module        : tlul_adapter_sram
+  FileName      : ../src/lowrisc_tlul_adapter_sram_0.1/rtl/tlul_adapter_sram.sv
+  LineNumber    : 383
+  Statement     :       assign unused_w = |wmask_intg & |wdata_intg;
+  VariableName  : gen_write_output[0].gen_ft_output.unused_w
+  ExprSize      : 
+  HIERARCHY     : :hmac:u_tlul_adapter@tlul_adapter_sram
+  -----------------------------------------------------------------------------
+  Tag           : W528
+  Description   : Variable '[VariableName]'[ExprSize] set but not read.[Hierarchy: '[HIERARCHY]']
+  Violation     : Lint:244
+  Goal          : lint_rtl
+  Module        : tlul_rsp_intg_gen
+  FileName      : ../src/lowrisc_tlul_headers_0.1/rtl/tlul_pkg.sv
+  LineNumber    : 163
+  Statement     :     unused_tlul = ^tl;
+  VariableName  : unused_tlul
+  ExprSize      : 
+  HIERARCHY     : :hmac:u_reg@hmac_reg_top:u_rsp_intg_gen@tlul_rsp_intg_gen
+  -----------------------------------------------------------------------------
+  Tag           : W528
+  Description   : Variable '[VariableName]'[ExprSize] set but not read.[Hierarchy: '[HIERARCHY]']
+  Violation     : Lint:247
+  Goal          : lint_rtl
+  Module        : tlul_rsp_intg_gen
+  FileName      : ../src/lowrisc_tlul_trans_intg_0.1/rtl/tlul_rsp_intg_gen.sv
+  LineNumber    : 40
+  Statement     :       .data_intg_o({data_intg, unused_data})
+  VariableName  : unused_data[31:0]
+  ExprSize      : 
+  HIERARCHY     : :hmac:u_reg@hmac_reg_top:u_rsp_intg_gen@tlul_rsp_intg_gen
+  -----------------------------------------------------------------------------
+  Tag           : W528
+  Description   : Variable '[VariableName]'[ExprSize] set but not read.[Hierarchy: '[HIERARCHY]']
+  Violation     : Lint:241
+  Goal          : lint_rtl
+  Module        : prim_onehot_check
+  FileName      : ../src/lowrisc_prim_onehot_check_0/rtl/prim_onehot_check.sv
+  LineNumber    : 136
+  Statement     :     assign unused_and_tree = ^and_tree;
+  VariableName  : unused_and_tree
+  ExprSize      : 
+  HIERARCHY     : :hmac:u_reg@hmac_reg_top:u_prim_reg_we_check@prim_reg_we_check:u_prim_onehot_check@prim_onehot_check
+  -----------------------------------------------------------------------------
+  Tag           : W528
+  Description   : Variable '[VariableName]'[ExprSize] set but not read.[Hierarchy: '[HIERARCHY]']
+  Violation     : Lint:291
+  Goal          : lint_rtl
+  Module        : prim_flop_2sync
+  FileName      : ../src/lowrisc_prim_flop_2sync_0/rtl/prim_flop_2sync.sv
+  LineNumber    : 37
+  Statement     :   assign unused_sig = EnablePrimCdcRand;
+  VariableName  : unused_sig
+  ExprSize      : 
+  HIERARCHY     : :hmac:\gen_alert_tx[0].u_prim_alert_sender @prim_alert_sender:u_decode_ping@prim_diff_decode:\gen_async.i_sync_p @prim_flop_2sync
+  -----------------------------------------------------------------------------
+  Tag           : W528
+  Description   : Variable '[VariableName]'[ExprSize] set but not read.[Hierarchy: '[HIERARCHY]']
+  Violation     : Lint:236
+  Goal          : lint_rtl
+  Module        : tlul_cmd_intg_chk
+  FileName      : ../src/lowrisc_tlul_trans_intg_0.1/rtl/tlul_cmd_intg_chk.sv
+  LineNumber    : 49
+  Statement     :   assign unused_tl = |tl_i;
+  VariableName  : unused_tl
+  ExprSize      : 
+  HIERARCHY     : :hmac:u_reg@hmac_reg_top:u_chk@tlul_cmd_intg_chk
+  -----------------------------------------------------------------------------
+  Tag           : W528
+  Description   : Variable '[VariableName]'[ExprSize] set but not read.[Hierarchy: '[HIERARCHY]']
+  Violation     : Lint:277
+  Goal          : lint_rtl
+  Module        : prim_fifo_sync
+  FileName      : ../src/lowrisc_prim_fifo_0/rtl/prim_fifo_sync.sv
+  LineNumber    : 53
+  Statement     :     assign unused_clr = clr_i;
+  VariableName  : unused_clr
+  ExprSize      : 
+  HIERARCHY     : :hmac:u_reg@hmac_reg_top:u_socket@tlul_socket_1n:fifo_h@tlul_fifo_sync:rspfifo@prim_fifo_sync
+  -----------------------------------------------------------------------------
+  Tag           : W528
+  Description   : Variable '[VariableName]'[ExprSize] set but not read.[Hierarchy: '[HIERARCHY]']
+  Violation     : Lint:261
+  Goal          : lint_rtl
+  Module        : tlul_socket_1n
+  FileName      : ../src/lowrisc_tlul_headers_0.1/rtl/tlul_pkg.sv
+  LineNumber    : 151
+  Statement     :     unused_tlul = ^tl;
+  VariableName  : unused_tlul
+  ExprSize      : 
+  HIERARCHY     : :hmac:u_reg@hmac_reg_top:u_socket@tlul_socket_1n
+  -----------------------------------------------------------------------------
+  Tag           : W528
+  Description   : Variable '[VariableName]'[ExprSize] set but not read.[Hierarchy: '[HIERARCHY]']
+  Violation     : Lint:34
+  Goal          : lint_rtl
+  Module        : tlul_adapter_sram
+  FileName      : ../src/lowrisc_tlul_adapter_sram_0.1/rtl/tlul_adapter_sram.sv
+  LineNumber    : 522
+  Statement     :     .wready_o(rspfifo_wready),
+  VariableName  : rspfifo_wready
+  ExprSize      : 
+  HIERARCHY     : :hmac:u_tlul_adapter@tlul_adapter_sram
+  -----------------------------------------------------------------------------
+  Tag           : W528
+  Description   : Variable '[VariableName]'[ExprSize] set but not read.[Hierarchy: '[HIERARCHY]']
+  Violation     : Lint:21
+  Goal          : lint_rtl
+  Module        : hmac
+  FileName      : ../src/lowrisc_ip_hmac_0.1/rtl/hmac.sv
+  LineNumber    : 608
+  Statement     :     if (!rst_ni)               initiated <= 1'b0;
+  VariableName  : initiated
+  ExprSize      : 
+  HIERARCHY     : :hmac
+  -----------------------------------------------------------------------------
+  Tag           : W528
+  Description   : Variable '[VariableName]'[ExprSize] set but not read.[Hierarchy: '[HIERARCHY]']
+  Violation     : Lint:35
+  Goal          : lint_rtl
+  Module        : tlul_adapter_sram
+  FileName      : ../src/lowrisc_tlul_adapter_sram_0.1/rtl/tlul_adapter_sram.sv
+  LineNumber    : 452
+  Statement     :   assign unused_rerror = rerror_i[0];
+  VariableName  : unused_rerror
+  ExprSize      : 
+  HIERARCHY     : :hmac:u_tlul_adapter@tlul_adapter_sram
+  -----------------------------------------------------------------------------
+  Tag           : W528
+  Description   : Variable '[VariableName]'[ExprSize] set but not read.[Hierarchy: '[HIERARCHY]']
+  Violation     : Lint:235
+  Goal          : lint_rtl
+  Module        : tlul_cmd_intg_chk
+  FileName      : ../src/lowrisc_tlul_headers_0.1/rtl/tlul_pkg.sv
+  LineNumber    : 151
+  Statement     :     unused_tlul = ^tl;
+  VariableName  : unused_tlul
+  ExprSize      : 
+  HIERARCHY     : :hmac:u_reg@hmac_reg_top:u_chk@tlul_cmd_intg_chk
+  -----------------------------------------------------------------------------
+  Tag           : W528
+  Description   : Variable '[VariableName]'[ExprSize] set but not read.[Hierarchy: '[HIERARCHY]']
+  Violation     : Lint:279
+  Goal          : lint_rtl
+  Module        : prim_subreg_arb
+  FileName      : ../src/lowrisc_prim_subreg_0/rtl/prim_subreg_arb.sv
+  LineNumber    : 35
+  Statement     :     assign unused_q = q;
+  VariableName  : unused_q
+  ExprSize      : 
+  HIERARCHY     : :hmac:u_reg@hmac_reg_top:u_intr_enable_hmac_done@prim_subreg:wr_en_data_arb@prim_subreg_arb
+  -----------------------------------------------------------------------------
+  Tag           : W528
+  Description   : Variable '[VariableName]'[ExprSize] set but not read.[Hierarchy: '[HIERARCHY]']
+  Violation     : Lint:36
+  Goal          : lint_rtl
+  Module        : tlul_adapter_sram
+  FileName      : ../src/lowrisc_tlul_adapter_sram_0.1/rtl/tlul_adapter_sram.sv
+  LineNumber    : 151
+  Statement     :   assign unused_tl_i_int = ^tl_i_int;
+  VariableName  : unused_tl_i_int
+  ExprSize      : 
+  HIERARCHY     : :hmac:u_tlul_adapter@tlul_adapter_sram
+  -----------------------------------------------------------------------------
+  Tag           : W528
+  Description   : Variable '[VariableName]'[ExprSize] set but not read.[Hierarchy: '[HIERARCHY]']
+  Violation     : Lint:281
+  Goal          : lint_rtl
+  Module        : prim_subreg_arb
+  FileName      : ../src/lowrisc_prim_subreg_0/rtl/prim_subreg_arb.sv
+  LineNumber    : 44
+  Statement     :     assign unused_wd = wd;
+  VariableName  : unused_wd[31:0]
+  ExprSize      : 
+  HIERARCHY     : :hmac:u_reg@hmac_reg_top:u_err_code@prim_subreg:wr_en_data_arb@prim_subreg_arb
+  -----------------------------------------------------------------------------
+  Tag           : W528
+  Description   : Variable '[VariableName]'[ExprSize] set but not read.[Hierarchy: '[HIERARCHY]']
+  Violation     : Lint:264
+  Goal          : lint_rtl
+  Module        : tlul_socket_1n
+  FileName      : ../src/lowrisc_tlul_headers_0.1/rtl/tlul_pkg.sv
+  LineNumber    : 189
+  Statement     :     unused_data = enc_data[top_pkg::TL_DW - 1 : 0];
+  VariableName  : unused_data[31:0]
+  ExprSize      : 
+  HIERARCHY     : :hmac:u_reg@hmac_reg_top:u_socket@tlul_socket_1n
+  -----------------------------------------------------------------------------
+  Tag           : W528
+  Description   : Variable '[VariableName]'[ExprSize] set but not read.[Hierarchy: '[HIERARCHY]']
+  Violation     : Lint:263
+  Goal          : lint_rtl
+  Module        : tlul_socket_1n
+  FileName      : ../src/lowrisc_tlul_socket_1n_0.1/rtl/tlul_socket_1n.sv
+  LineNumber    : 192
+  Statement     :       if (dev_select_outstanding == NWD'(idx)) tl_t_p = tl_u_i[idx];
+  VariableName  : tl_t_p.a_ready
+  ExprSize      : 
+  HIERARCHY     : :hmac:u_reg@hmac_reg_top:u_socket@tlul_socket_1n
+  -----------------------------------------------------------------------------
+  Tag           : W528
+  Description   : Variable '[VariableName]'[ExprSize] set but not read.[Hierarchy: '[HIERARCHY]']
+  Violation     : Lint:37
+  Goal          : lint_rtl
+  Module        : tlul_adapter_sram
+  FileName      : ../src/lowrisc_tlul_adapter_sram_0.1/rtl/tlul_adapter_sram.sv
+  LineNumber    : 278
+  Statement     :     .data_intg_o({error_instr_integ, unused_instr})
+  VariableName  : unused_instr[31:0]
+  ExprSize      : 
+  HIERARCHY     : :hmac:u_tlul_adapter@tlul_adapter_sram
+
+  -----------------------------------------------------------------------------
+  RegInputOutput-ML  (3 infos/0 waived)
+  -----------------------------------------------------------------------------
+  Tag                 : RegInputOutput-ML
+  Description         : Port '[Signal]' is not registered [Hierarchy: '[DesignObjHierarchy]']
+  Violation           : Lint:7
+  Goal                : lint_rtl
+  FileName            : ../src/lowrisc_tlul_trans_intg_0.1/rtl/tlul_cmd_intg_chk.sv
+  LineNumber          : 49
+  Statement           :   assign unused_tl = |tl_i;
+  Signal              : tl_i[108:0]
+  Module              : hmac
+  DesignObjHierarchy  : hmac
+  -----------------------------------------------------------------------------
+  Tag                 : RegInputOutput-ML
+  Description         : Port '[Signal]' is not registered [Hierarchy: '[DesignObjHierarchy]']
+  Violation           : Lint:8
+  Goal                : lint_rtl
+  FileName            : ../src/lowrisc_ip_hmac_0.1/rtl/hmac.sv
+  LineNumber          : 19
+  Statement           :   output tlul_pkg::tl_d2h_t tl_o,
+  Signal              : tl_o[65:0]
+  Module              : hmac
+  DesignObjHierarchy  : hmac
+  -----------------------------------------------------------------------------
+  Tag                 : RegInputOutput-ML
+  Description         : Port '[Signal]' is not registered [Hierarchy: '[DesignObjHierarchy]']
+  Violation           : Lint:6
+  Goal                : lint_rtl
+  FileName            : ../src/lowrisc_prim_generic_buf_0/rtl/prim_generic_buf.sv
+  LineNumber          : 16
+  Statement           :   assign out_o = ~inv;
+  Signal              : alert_rx_i[3:0][0]
+  Module              : hmac
+  DesignObjHierarchy  : hmac
+
+  -----------------------------------------------------------------------------
+  ReportPortInfo-ML  (1 info/0 waived)
+  -----------------------------------------------------------------------------
+  Tag           : ReportPortInfo-ML
+  Description   : Port Information for top design unit has been generated. For details see report ReportPortInfo.rpt
+  Violation     : Lint:293
+  Goal          : lint_rtl
+  FileName      : /pprj093/projects/phase_2_shylaja/opentitan/hw/static_vcsg/build/lowrisc_dv_hmac_sva_0.1/formal-icarus/vcst_rtdb/.internal/spyglass/vc_lint0/hmac/VC_GOAL0/spyglass_reports/morelint/ReportPortInfo
+  LineNumber    : 1
+  Statement     : #     Comment          : Report Top Level Module Port Info
+
+  -----------------------------------------------------------------------------
+  W240  (1 info/0 waived)
+  -----------------------------------------------------------------------------
+  Tag           : W240
+  Description   : Please refer to 'SignalUsageReport.rpt' for details of violating bits
+  Violation     : Lint:44
+  Goal          : lint_rtl
+  Module        : hmac
+  FileName      : /pprj093/projects/phase_2_shylaja/opentitan/hw/static_vcsg/build/lowrisc_dv_hmac_sva_0.1/formal-icarus/vcst_rtdb/.internal/spyglass/vc_lint0/hmac/VC_GOAL0/spyglass_reports/lint/SignalUsageReport.rpt
+  LineNumber    : 1
+  Statement     : #     Comment          : SignalUsageReport : It dumps details of violating bits of a signal
+
+  -----------------------------------------------------------------------------
+  W528  (1 info/0 waived)
+  -----------------------------------------------------------------------------
+  Tag           : W528
+  Description   : Please refer to 'SignalUsageReport.rpt' for details of violating bits
+  Violation     : Lint:22
+  Goal          : lint_rtl
+  Module        : hmac
+  FileName      : /pprj093/projects/phase_2_shylaja/opentitan/hw/static_vcsg/build/lowrisc_dv_hmac_sva_0.1/formal-icarus/vcst_rtdb/.internal/spyglass/vc_lint0/hmac/VC_GOAL0/spyglass_reports/lint/SignalUsageReport.rpt
+  LineNumber    : 1
+  Statement     : #     Comment          : SignalUsageReport : It dumps details of violating bits of a signal

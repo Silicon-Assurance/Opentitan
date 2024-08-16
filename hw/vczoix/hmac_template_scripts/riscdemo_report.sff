@@ -1,0 +1,92 @@
+Date("06/18/23 22:32:30")
+User("shiyangl")
+Tool("REPORT")
+Info("  Type:    Fault Coverage Report")
+Info(" Version: U-2023.03-SP1")
+Info(" FDB Storage Path: /slowfs/vgzoixcae/shiyangl/support/hack/opentitan_buggy/scratch/master/hmac-sim-vcs/default/temp/fdb")
+Info(" FDB Server: vgtest-rh73.internal.synopsys.com:56029")
+Info(" FDB Project: default")
+Info(" FDB Campaign: riscdemo")
+Info(" Command: vc_fdb_report -campaign riscdemo -overwrite ")
+
+FaultList { 
+    NA 0 {PORT "tb.dut.u_reg.reg2hw.key[2].q[0]"}
+    NA 1 {PORT "tb.dut.u_reg.reg2hw.key[2].q[0]"}
+    NA 0 {PORT "tb.dut.u_reg.reg2hw.key[2].q[10]"}
+    NA 1 {PORT "tb.dut.u_reg.reg2hw.key[2].q[10]"}
+    NA 0 {PORT "tb.dut.u_reg.reg2hw.key[2].q[11]"}
+    NA 1 {PORT "tb.dut.u_reg.reg2hw.key[2].q[11]"}
+    NA 0 {PORT "tb.dut.u_reg.reg2hw.key[2].q[12]"}
+    NA 1 {PORT "tb.dut.u_reg.reg2hw.key[2].q[12]"}
+    NA 0 {PORT "tb.dut.u_reg.reg2hw.key[2].q[13]"}
+    NA 1 {PORT "tb.dut.u_reg.reg2hw.key[2].q[13]"}
+    NA 0 {PORT "tb.dut.u_reg.reg2hw.key[2].q[14]"}
+    NA 1 {PORT "tb.dut.u_reg.reg2hw.key[2].q[14]"}
+    NA 0 {PORT "tb.dut.u_reg.reg2hw.key[2].q[15]"}
+    NA 1 {PORT "tb.dut.u_reg.reg2hw.key[2].q[15]"}
+    NA 0 {PORT "tb.dut.u_reg.reg2hw.key[2].q[16]"}
+    NA 1 {PORT "tb.dut.u_reg.reg2hw.key[2].q[16]"}
+    NA 0 {PORT "tb.dut.u_reg.reg2hw.key[2].q[17]"}
+    NA 1 {PORT "tb.dut.u_reg.reg2hw.key[2].q[17]"}
+    NA 0 {PORT "tb.dut.u_reg.reg2hw.key[2].q[18]"}
+    NA 1 {PORT "tb.dut.u_reg.reg2hw.key[2].q[18]"}
+    NA 0 {PORT "tb.dut.u_reg.reg2hw.key[2].q[19]"}
+    NA 1 {PORT "tb.dut.u_reg.reg2hw.key[2].q[19]"}
+    NA 0 {PORT "tb.dut.u_reg.reg2hw.key[2].q[1]"}
+    NA 1 {PORT "tb.dut.u_reg.reg2hw.key[2].q[1]"}
+    NA 0 {PORT "tb.dut.u_reg.reg2hw.key[2].q[20]"}
+    NA 1 {PORT "tb.dut.u_reg.reg2hw.key[2].q[20]"}
+    NA 0 {PORT "tb.dut.u_reg.reg2hw.key[2].q[21]"}
+    NA 1 {PORT "tb.dut.u_reg.reg2hw.key[2].q[21]"}
+    NA 0 {PORT "tb.dut.u_reg.reg2hw.key[2].q[22]"}
+    NA 1 {PORT "tb.dut.u_reg.reg2hw.key[2].q[22]"}
+    NA 0 {PORT "tb.dut.u_reg.reg2hw.key[2].q[23]"}
+    NA 1 {PORT "tb.dut.u_reg.reg2hw.key[2].q[23]"}
+    NA 0 {PORT "tb.dut.u_reg.reg2hw.key[2].q[24]"}
+    NA 1 {PORT "tb.dut.u_reg.reg2hw.key[2].q[24]"}
+    NA 0 {PORT "tb.dut.u_reg.reg2hw.key[2].q[25]"}
+    NA 1 {PORT "tb.dut.u_reg.reg2hw.key[2].q[25]"}
+    NA 0 {PORT "tb.dut.u_reg.reg2hw.key[2].q[26]"}
+    NA 1 {PORT "tb.dut.u_reg.reg2hw.key[2].q[26]"}
+    NA 0 {PORT "tb.dut.u_reg.reg2hw.key[2].q[27]"}
+    NA 1 {PORT "tb.dut.u_reg.reg2hw.key[2].q[27]"}
+    NA 0 {PORT "tb.dut.u_reg.reg2hw.key[2].q[28]"}
+    NA 1 {PORT "tb.dut.u_reg.reg2hw.key[2].q[28]"}
+    NA 0 {PORT "tb.dut.u_reg.reg2hw.key[2].q[29]"}
+    NA 1 {PORT "tb.dut.u_reg.reg2hw.key[2].q[29]"}
+    NA 0 {PORT "tb.dut.u_reg.reg2hw.key[2].q[2]"}
+    NA 1 {PORT "tb.dut.u_reg.reg2hw.key[2].q[2]"}
+    NA 0 {PORT "tb.dut.u_reg.reg2hw.key[2].q[30]"}
+    NA 1 {PORT "tb.dut.u_reg.reg2hw.key[2].q[30]"}
+    NA 0 {PORT "tb.dut.u_reg.reg2hw.key[2].q[31]"}
+    NA 1 {PORT "tb.dut.u_reg.reg2hw.key[2].q[31]"}
+    NA 0 {PORT "tb.dut.u_reg.reg2hw.key[2].q[3]"}
+    NA 1 {PORT "tb.dut.u_reg.reg2hw.key[2].q[3]"}
+    NA 0 {PORT "tb.dut.u_reg.reg2hw.key[2].q[4]"}
+    NA 1 {PORT "tb.dut.u_reg.reg2hw.key[2].q[4]"}
+    NA 0 {PORT "tb.dut.u_reg.reg2hw.key[2].q[5]"}
+    NA 1 {PORT "tb.dut.u_reg.reg2hw.key[2].q[5]"}
+    NA 0 {PORT "tb.dut.u_reg.reg2hw.key[2].q[6]"}
+    NA 1 {PORT "tb.dut.u_reg.reg2hw.key[2].q[6]"}
+    NA 0 {PORT "tb.dut.u_reg.reg2hw.key[2].q[7]"}
+    NA 1 {PORT "tb.dut.u_reg.reg2hw.key[2].q[7]"}
+    NA 0 {PORT "tb.dut.u_reg.reg2hw.key[2].q[8]"}
+    NA 1 {PORT "tb.dut.u_reg.reg2hw.key[2].q[8]"}
+    NA 0 {PORT "tb.dut.u_reg.reg2hw.key[2].q[9]"}
+    NA 1 {PORT "tb.dut.u_reg.reg2hw.key[2].q[9]"}
+    NA 0 {PORT "tb.dut.u_reg.reg2hw.key[2].qe"}
+    NA 1 {PORT "tb.dut.u_reg.reg2hw.key[2].qe"}
+}
+#------------------------------------------------------------------------
+# Fault Coverage Summary for Default List
+#
+#                                                  Total
+#------------------------------------------------------------------------
+# Number of Faults:                                   66 100.00%    
+#
+# Testable Faults:                                    66 100.00%  100.00% 
+#   Dropped Detected                         DD        0   0.00%    0.00%
+#   Dropped Potential                        PD        0   0.00%    0.00%
+#   Not Attempted                            NA       66 100.00%  100.00%
+#   Not Detected                             ND        0   0.00%    0.00%
+#------------------------------------------------------------------------

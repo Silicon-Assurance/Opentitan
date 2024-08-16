@@ -1,0 +1,17 @@
+#!/bin/bash
+
+set -e
+
+export DUT_TOP=$1
+
+echo "$DUT_TOP - Start --------------------------------------------------------"
+
+cd build/*${DUT_TOP}*/formal-icarus
+
+vcf -f ../../../fsv.tcl -output_log_file fsv.log -gui
+#vcf -f ../../../fsv.tcl -output_log_file fsv.log -batch
+
+cd -
+
+echo "$DUT_TOP - End ----------------------------------------------------------"
+
